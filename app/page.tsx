@@ -1,4 +1,5 @@
 import { Header } from '@/components/Header';
+import { HeroSection } from '@/components/HeroSection';
 import { VirtualExpo } from '@/components/VirtualExpo';
 import { BrandHighlights } from '@/components/BrandHighlights';
 import { ScheduleSection } from '@/components/ScheduleSection';
@@ -16,6 +17,7 @@ export default function Home() {
     <div className="min-h-[100dvh] bg-[#f5f9ff] font-sans text-slate-950 antialiased">
       <Header />
       <main>
+        <HeroSection />
         <VirtualExpo />
         <BrandHighlights />
         <ScheduleSection />
