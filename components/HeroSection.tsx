@@ -2,159 +2,124 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Users, Store, TrendingUp, Play, BookOpen, Sparkles } from 'lucide-react';
+import { Users, Store, TrendingUp, Play, BookOpen } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 
-function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
+function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const started = useRef(false);
+  const ran = useRef(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          let start = 0;
-          const duration = 2000;
-          const step = (timestamp: number) => {
-            if (!start) start = timestamp;
-            const progress = Math.min((timestamp - start) / duration, 1);
-            setCount(Math.floor(progress * target));
-            if (progress < 1) requestAnimationFrame(step);
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting && !ran.current) {
+          ran.current = true;
+          let t0 = 0;
+          const step = (ts: number) => {
+            if (!t0) t0 = ts;
+            const p = Math.min((ts - t0) / 1800, 1);
+            const ease = 1 - Math.pow(1 - p, 3);
+            setCount(Math.floor(ease * target));
+            if (p < 1) requestAnimationFrame(step);
           };
           requestAnimationFrame(step);
         }
       },
       { threshold: 0.5 }
     );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    obs.observe(el);
+    return () => obs.disconnect();
   }, [target]);
 
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-function Particles() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {Array.from({ length: 20 }).map((_, i) => (
-        <div
-          key={i}
-          className="absolute w-1 h-1 bg-blue-400/30 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${100 + Math.random() * 20}%`,
-            animation: `particle-drift ${8 + Math.random() * 12}s linear ${Math.random() * 8}s infinite`,
-          }}
-        />
-      ))}
-    </div>
-  );
-}
-
 export function HeroSection() {
   return (
-    <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900">
-      {/* Decorative elements */}
-      <Particles />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[100px]" />
-      
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
-        backgroundSize: '60px 60px'
-      }} />
+    <section className="relative min-h-[100dvh] flex items-center bg-[#070b14] overflow-hidden pt-16">
+      {/* Background layers */}
+      <div className="absolute inset-0">
+        {/* Subtle grid */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)',
+          backgroundSize: '80px 80px'
+        }} />
+        {/* Gradient orbs */}
+        <div className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-600/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[20%] left-[10%] w-[300px] h-[300px] bg-cyan-500/6 rounded-full blur-[100px]" />
+      </div>
 
-      <div className="container mx-auto px-4 relative z-10 py-16">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-          {/* Left content */}
-          <div className="w-full lg:w-3/5 space-y-8 fade-in-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-sm font-medium">
-              <Sparkles className="w-4 h-4" />
-              <span>Sự kiện triển lãm ảo hàng đầu Việt Nam</span>
-            </div>
-            
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
-              <span className="text-white">FUTURE</span>
-              <br />
-              <span className="text-white">CONSUMER </span>
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent gradient-animate">
-                EXPO 2026
-              </span>
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10 w-full py-24">
+        <div className="flex flex-col lg:flex-row items-center gap-20">
+          {/* Left - content */}
+          <div className="w-full lg:w-[58%] space-y-8">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight text-white">
+              FUTURE CONSUMER{' '}
+              <span className="text-blue-400">EXPO 2026</span>
             </h1>
-            
-            <p className="text-lg sm:text-xl text-blue-100/70 max-w-xl leading-relaxed">
+
+            <p className="text-lg text-blue-300/70 font-medium">
+              Where Technology Meets Consumer Experience
+            </p>
+
+            <p className="text-base text-white/45 max-w-[520px] leading-relaxed">
               Khám phá không gian triển lãm ảo với các thương hiệu hàng đầu 
               và công nghệ tương lai trong lĩnh vực tiêu dùng.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Button className="bg-blue-600 hover:bg-blue-500 text-white px-8 py-7 rounded-xl text-base font-semibold transition-all shadow-lg shadow-blue-600/30 hover:shadow-blue-500/50 group">
-                <Play className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform" /> BẮT ĐẦU THAM QUAN
+              <Button className="bg-blue-600 hover:bg-blue-500 text-white h-12 px-7 rounded-lg text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] shadow-[0_0_24px_rgba(59,130,246,0.2)]">
+                <Play className="mr-2 w-4 h-4" /> BẮT ĐẦU THAM QUAN
               </Button>
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 px-8 py-7 rounded-xl text-base font-semibold backdrop-blur-sm">
-                <BookOpen className="mr-2 w-5 h-5" /> HƯỚNG DẪN
+              <Button variant="outline" className="border-white/10 text-white/70 hover:text-white hover:bg-white/[0.04] h-12 px-7 rounded-lg text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
+                <BookOpen className="mr-2 w-4 h-4" /> HƯỚNG DẪN THAM QUAN
               </Button>
             </div>
 
-            {/* Stats */}
-            <div className="flex flex-wrap items-center gap-8 sm:gap-12 pt-8 border-t border-white/10">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/15 flex items-center justify-center">
-                  <Users className="w-6 h-6 text-blue-400" />
+            {/* Stats row */}
+            <div className="flex flex-wrap items-center gap-10 pt-8 border-t border-white/[0.06]">
+              {[
+                { Icon: Users, value: 143, label: 'Visitors Online', color: 'text-blue-400', bg: 'bg-blue-500/10' },
+                { Icon: Store, value: 8, label: 'Gian hàng', color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+                { Icon: TrendingUp, value: 92, label: 'Tương tác', suffix: '%', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+              ].map((s, i) => (
+                <div key={i} className="flex items-center gap-3">
+                  <div className={`w-10 h-10 rounded-lg ${s.bg} flex items-center justify-center`}>
+                    <s.Icon className={`w-5 h-5 ${s.color}`} />
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-white tabular-nums">
+                      <Counter target={s.value} suffix={s.suffix} />
+                    </div>
+                    <div className="text-xs text-white/35">{s.label}</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="text-3xl font-bold text-white"><AnimatedCounter target={143} /></div>
-                  <div className="text-sm text-blue-200/60">Visitors Online</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-cyan-500/15 flex items-center justify-center">
-                  <Store className="w-6 h-6 text-cyan-400" />
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-white"><AnimatedCounter target={8} /></div>
-                  <div className="text-sm text-blue-200/60">Gian hàng</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-emerald-500/15 flex items-center justify-center">
-                  <TrendingUp className="w-6 h-6 text-emerald-400" />
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-white"><AnimatedCounter target={92} suffix="%" /></div>
-                  <div className="text-sm text-blue-200/60">Tương tác</div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
 
-          {/* Right robot */}
-          <div className="w-full lg:w-2/5 flex justify-center lg:justify-end">
-            <div className="relative">
-              {/* Glow ring */}
-              <div className="absolute inset-0 w-72 h-72 sm:w-80 sm:h-80 mx-auto rounded-full bg-gradient-to-r from-blue-500/20 via-cyan-500/20 to-blue-500/20 blur-2xl" />
-              
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 floating-animation">
-                <Image
-                  src="/images/robot-guide.png"
-                  alt="Robot Guide"
-                  fill
-                  className="object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.3)]"
-                  priority
-                />
-              </div>
+          {/* Right - robot */}
+          <div className="w-full lg:w-[42%] flex justify-center lg:justify-end">
+            <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
+              {/* Soft glow behind */}
+              <div className="absolute inset-[-20%] bg-blue-500/8 rounded-full blur-[60px]" />
+              <Image
+                src="/images/robot-guide.png"
+                alt="Robot Guide"
+                fill
+                className="object-contain relative z-10 drop-shadow-[0_0_30px_rgba(59,130,246,0.15)]"
+                priority
+              />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent" />
+      {/* Bottom fade to next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0c1220] to-transparent" />
     </section>
   );
 }
