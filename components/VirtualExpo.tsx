@@ -183,18 +183,18 @@ function BoothCard({ booth, position }: { booth: Booth; position: 'top' | 'botto
 
   return (
     <article
-      className={`expo-booth motion-card group ${position === 'top' ? 'expo-booth-top min-h-[208px]' : 'expo-booth-bottom min-h-[190px]'}`}
+      className={`expo-booth motion-card group ${position === 'top' ? 'expo-booth-top min-h-[188px]' : 'expo-booth-bottom min-h-[174px]'}`}
       style={style}
     >
       <div className="absolute inset-x-3 top-0 h-1.5 rounded-b-full bg-white/65 shadow-[0_0_18px_rgba(255,255,255,0.9)]" />
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <div className="grid h-14 w-14 place-items-center rounded-full bg-white p-2.5 shadow-[0_12px_26px_rgba(15,23,42,0.22),inset_0_1px_0_rgba(255,255,255,0.9)]">
+          <div className="grid h-12 w-12 place-items-center rounded-full bg-white p-2.5 shadow-[0_12px_26px_rgba(15,23,42,0.22),inset_0_1px_0_rgba(255,255,255,0.9)]">
             <img src={booth.logo} alt={`${booth.brand} logo`} className="h-full w-full object-contain" />
           </div>
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.18em] text-white/74">{booth.id}</p>
-            <p className="mt-1 text-lg font-black leading-none text-white drop-shadow-sm">{booth.brand}</p>
+            <p className="mt-1 text-base font-black leading-none text-white drop-shadow-sm">{booth.brand}</p>
           </div>
         </div>
         <div className="flex items-center gap-1.5 rounded-full bg-white/16 px-2.5 py-1 text-[11px] font-bold text-white/78">
@@ -203,16 +203,16 @@ function BoothCard({ booth, position }: { booth: Booth; position: 'top' | 'botto
         </div>
       </div>
 
-      <div className="mt-4 grid grid-cols-[0.78fr_1fr] gap-4">
+      <div className="mt-3 grid grid-cols-[0.72fr_1fr] gap-3">
         <div className="overflow-hidden rounded-[0.85rem] border border-white/20 bg-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]">
           <img
             src={booth.image}
             alt={`Không gian gian hàng ${booth.brand}`}
-            className="h-24 w-full object-cover opacity-90 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
+            className="h-20 w-full object-cover opacity-90 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105"
           />
         </div>
         <div className="flex min-w-0 flex-col">
-          <h3 className="text-[13px] font-black leading-tight text-white">{booth.name}</h3>
+          <h3 className="text-xs font-black leading-tight text-white">{booth.name}</h3>
           <p className="mt-1.5 line-clamp-2 text-[11px] leading-5 text-white/68">{booth.desc}</p>
           <button className="mt-auto inline-flex w-max items-center gap-2 rounded-[0.75rem] bg-white/16 px-3 py-2 text-[11px] font-bold text-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/24 active:scale-[0.98]">
             Khám phá
@@ -229,10 +229,40 @@ export function VirtualExpo() {
   const bottomBooths = booths.slice(5);
 
   return (
-    <section id="trien-lam" className="expo-hero-light relative overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32">
-      <div className="absolute right-0 top-16 hidden h-52 w-52 translate-x-1/4 rounded-full bg-blue-200/50 blur-3xl lg:block" />
+    <section id="trien-lam" className="expo-hero-light relative overflow-hidden pb-16 pt-24 sm:pb-20 sm:pt-28">
+      <div className="absolute right-0 top-12 hidden h-48 w-48 translate-x-1/4 rounded-full bg-blue-200/45 blur-3xl lg:block" />
       <div className="mx-auto max-w-[1480px] px-4 sm:px-6">
-        <div data-reveal className="mb-8 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.8fr)] lg:items-end">
+        <div data-reveal className="mb-4 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-blue-700">
+              Future Consumer Expo 2026
+            </p>
+            <h1 className="mt-2 text-3xl font-black uppercase leading-none tracking-[-0.045em] text-slate-950 sm:text-5xl">
+              Sơ đồ không gian triển lãm
+            </h1>
+            <p className="mt-2 max-w-[720px] text-sm font-medium leading-6 text-slate-600 sm:text-base">
+              Click vào gian hàng để khám phá trải nghiệm, lộ trình robot guide và dữ liệu tương tác theo thời gian thực.
+            </p>
+          </div>
+
+          <div className="grid gap-2 sm:grid-cols-3 lg:min-w-[460px]">
+            {heroStats.map(({ Icon, label, value }) => (
+              <div key={label} className="rounded-[1rem] border border-slate-200 bg-white/82 p-3 shadow-[0_14px_34px_rgba(15,23,42,0.07)] backdrop-blur">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-9 w-9 place-items-center rounded-full bg-blue-50 text-blue-700">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-xl font-black leading-none text-slate-950 tabular-nums">{value}</p>
+                    <p className="mt-1 text-xs font-semibold text-slate-500">{label}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div data-reveal className="hidden">
           <div>
             <h1 className="max-w-5xl text-[clamp(2.55rem,6.3vw,6.6rem)] font-black uppercase leading-[0.92] tracking-[-0.055em] text-slate-950 text-balance">
               Future Consumer <span className="text-blue-600">Expo 2026</span>
@@ -277,7 +307,7 @@ export function VirtualExpo() {
           </div>
         </div>
 
-        <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div className="hidden">
           <div className="flex items-start gap-4">
             <div className="grid h-12 w-12 place-items-center rounded-[1rem] border border-blue-100 bg-white text-blue-600 shadow-[0_16px_42px_rgba(37,99,235,0.12)]">
               <MapPin className="h-5 w-5" />
@@ -300,16 +330,37 @@ export function VirtualExpo() {
 
         <div className="grid gap-5">
           <div data-reveal style={{ '--reveal-delay': '90ms' } as CSSProperties} className="min-w-0">
-            <div className="overflow-x-auto rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-[0_30px_100px_rgba(15,23,42,0.12)]">
-              <div className="expo-floor-shell min-w-[1080px] rounded-[1.2rem] p-4">
-                <div className="grid grid-cols-[150px_repeat(5,minmax(150px,1fr))] gap-2">
+            <div className="overflow-x-auto rounded-[1.35rem] border border-slate-200 bg-white p-2 shadow-[0_30px_100px_rgba(15,23,42,0.12)]">
+              <div className="expo-floor-shell min-w-[1180px] rounded-[1.1rem] p-4">
+                <div className="mb-3 flex items-center justify-between gap-4">
+                  <div className="flex items-center gap-3">
+                    <div className="grid h-9 w-9 place-items-center rounded-[0.7rem] border border-cyan-200/25 bg-white/8 text-cyan-100">
+                      <MapPin className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <h2 className="text-base font-black uppercase tracking-[0.02em] text-white">
+                        Sơ đồ triển lãm
+                      </h2>
+                      <p className="mt-1 text-xs font-medium text-slate-300">
+                        Lối tham quan, robot guide và vị trí gian hàng đang hoạt động.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex w-max items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-400/10 px-3 py-1.5 text-xs font-black text-emerald-200">
+                    <Activity className="h-3.5 w-3.5" />
+                    LIVE
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-[150px_repeat(5,minmax(170px,1fr))] gap-2">
                   <UtilityBlock />
                   {topBooths.map((booth) => (
                     <BoothCard key={booth.id} booth={booth} position="top" />
                   ))}
                 </div>
 
-                <div className="expo-corridor relative my-4 min-h-[150px] overflow-hidden rounded-[1rem] border-y-4 border-[#0d5b64]/90 bg-white">
+                <div className="expo-corridor relative my-3 min-h-[130px] overflow-hidden rounded-[0.9rem] border-y-4 border-[#0d5b64]/90 bg-white">
                   <div className="expo-floor-grid absolute inset-0" />
                   <div className="absolute inset-x-0 top-0 h-1 bg-[#0d5b64]" />
                   <div className="absolute inset-x-0 bottom-0 h-1 bg-[#0d5b64]" />
@@ -339,7 +390,7 @@ export function VirtualExpo() {
                   <RobotGuide className="left-[30%] top-[44%]" />
                   <RobotGuide className="right-[23%] top-[44%]" />
 
-                  <div className="absolute left-1/2 top-1/2 flex w-[300px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[1rem] border border-cyan-200 bg-slate-900/72 px-5 py-4 text-center text-white shadow-[0_18px_50px_rgba(15,23,42,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur">
+                  <div className="absolute left-1/2 top-1/2 flex w-[300px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[0.9rem] border border-cyan-200 bg-slate-900/72 px-5 py-3 text-center text-white shadow-[0_18px_50px_rgba(15,23,42,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur">
                     <div>
                       <p className="text-[13px] font-black uppercase tracking-[0.14em]">Smart Guided Experience Lane</p>
                       <p className="mt-1 text-[11px] font-medium text-cyan-100/70">Hệ thống dẫn đường tự động đang hoạt động</p>
@@ -347,7 +398,7 @@ export function VirtualExpo() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-[150px_repeat(3,minmax(210px,1fr))_150px] gap-2">
+                <div className="grid grid-cols-[150px_repeat(3,minmax(240px,1fr))_150px] gap-2">
                   <div className="rounded-[1rem] border border-slate-200 bg-slate-900" />
                   {bottomBooths.map((booth) => (
                     <BoothCard key={booth.id} booth={booth} position="bottom" />
