@@ -76,7 +76,7 @@ export function HeroSection() {
       <div className="scanline absolute inset-x-0 top-0 -z-10 h-px bg-cyan-200/70" />
 
       <div className="mx-auto grid min-h-[calc(100dvh-6rem)] max-w-[1440px] grid-cols-1 items-end px-5 pb-8 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.7fr)] lg:items-center lg:pb-10 lg:pt-0">
-        <div className="max-w-4xl pb-8 lg:pb-0">
+        <div className="max-w-4xl pb-8 lg:pb-24">
           <div className="hero-kicker mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-200/15 bg-white/[0.055] px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]">
             <Radio className="h-3.5 w-3.5 text-cyan-200" />
             Live virtual expo
