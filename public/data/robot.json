@@ -1,0 +1,50 @@
+{
+  "name": "NOVA-X1",
+  "status": "active",
+  "model": "Advanced Humanoid Guide Robot",
+  "version": "2.5.1",
+  "batteryLevel": 92,
+  "temperatureSensor": 36.5,
+  "uptime": 2342,
+  "specifications": {
+    "height": "1.6m",
+    "weight": "45kg",
+    "processor": "Quantum Processor v3",
+    "memory": "512GB SSD + 64GB RAM",
+    "cameras": 8,
+    "microphones": 6,
+    "speakers": 2,
+    "movementSpeed": "1.5 m/s"
+  },
+  "features": [
+    "Dịch ngôn ngữ thời gian thực (50+ ngôn ngữ)",
+    "Nhận diện khuôn mặt và phát hiện cảm xúc",
+    "Điều hướng tự động với SLAM",
+    "Hệ thống đối thoại tương tác",
+    "Nhận diện cử chỉ",
+    "Nhận thức không gian 360 độ"
+  ],
+  "currentLocation": "Phòng Trưng Bày A",
+  "nextScheduledMaintenance": "2024-04-15",
+  "operatingHours": {
+    "start": "08:00",
+    "end": "20:00"
+  },
+  "logs": [
+    {
+      "timestamp": "2024-03-20 15:30:45",
+      "event": "Dẫn đường thành công cho 15 khách tham quan",
+      "location": "Phòng Trưng Bày A"
+    },
+    {
+      "timestamp": "2024-03-20 14:15:20",
+      "event": "Trả lời 42 câu hỏi bằng 5 ngôn ngữ",
+      "location": "Lối Vào Chính"
+    },
+    {
+      "timestamp": "2024-03-20 12:00:00",
+      "event": "Kiểm tra hệ thống hàng ngày hoàn tất",
+      "location": "Trạm Sạc"
+    }
+  ]
+}
