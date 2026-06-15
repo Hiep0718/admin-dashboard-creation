@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Activity, User } from 'lucide-react';
-import Image from 'next/image';
 
 const booths = [
   { id: '01', name: 'Coca-Cola Experience Hub', brand: 'Coca-Cola', desc: 'Trải nghiệm cá nhân hóa đồ uống bằng AI.', color: 'bg-red-700', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg' },
@@ -47,7 +46,7 @@ export function VirtualExpo() {
                   <div key={booth.id} className={`${booth.color} rounded-xl p-4 relative group cursor-pointer border border-white/10 hover:scale-105 transition-transform duration-300 shadow-lg`}>
                     <div className="absolute top-2 right-3 text-white/50 font-mono text-sm">{booth.id}</div>
                     <div className="h-12 w-12 bg-white rounded flex items-center justify-center font-bold text-xs text-slate-800 mb-3 shadow-inner overflow-hidden p-1">
-                      <Image src={booth.logo} alt={booth.brand} width={40} height={40} className="object-contain w-full h-full" />
+                      <img src={booth.logo} alt={booth.brand} className="object-contain w-full h-full" />
                     </div>
                     <h3 className="text-white font-bold text-sm leading-tight mb-1">{booth.name}</h3>
                     <p className="text-white/80 text-xs line-clamp-2 mb-4">{booth.desc}</p>
@@ -86,7 +85,7 @@ export function VirtualExpo() {
                   <div key={booth.id} className={`${booth.color} rounded-xl p-4 relative group cursor-pointer border border-white/10 hover:scale-105 transition-transform duration-300 shadow-lg`}>
                     <div className="absolute top-2 right-3 text-white/50 font-mono text-sm">{booth.id}</div>
                     <div className="h-10 w-16 bg-white rounded flex items-center justify-center font-bold text-xs text-slate-800 mb-3 p-1 shadow-inner inline-block overflow-hidden">
-                      <Image src={booth.logo} alt={booth.brand} width={50} height={30} className="object-contain w-full h-full" />
+                      <img src={booth.logo} alt={booth.brand} className="object-contain w-full h-full" />
                     </div>
                     <h3 className="text-white font-bold text-sm leading-tight mb-1">{booth.name}</h3>
                     <p className="text-white/80 text-xs line-clamp-2 mb-4">{booth.desc}</p>
