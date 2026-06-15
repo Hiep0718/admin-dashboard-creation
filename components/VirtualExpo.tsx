@@ -16,8 +16,6 @@ type Booth = {
   variant?: 'top' | 'bottom';
 };
 
-const sharedBoothImage = '/images/exhibition-hall.png';
-
 const booths: Booth[] = [
   {
     id: '01',
@@ -27,7 +25,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://coca-cola.com&size=128',
     accent: '#dc1725',
     deep: '#68141a',
-    image: '/images/cocacola-booth.png',
+    image: '/images/booths/cocacola.webp',
     className: 'left-[160px] top-[14px] h-[164px] w-[204px]',
     variant: 'top',
   },
@@ -39,7 +37,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://pepsi.com&size=128',
     accent: '#1357c8',
     deep: '#082345',
-    image: sharedBoothImage,
+    image: '/images/booths/pepsi.webp',
     className: 'left-[372px] top-[14px] h-[164px] w-[204px]',
     variant: 'top',
   },
@@ -51,7 +49,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://heineken.com&size=128',
     accent: '#0b8c45',
     deep: '#05321e',
-    image: sharedBoothImage,
+    image: '/images/booths/heineken.webp',
     className: 'left-[584px] top-[14px] h-[164px] w-[204px]',
     variant: 'top',
   },
@@ -63,7 +61,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://tigerbeer.com&size=128',
     accent: '#d88211',
     deep: '#092b54',
-    image: sharedBoothImage,
+    image: '/images/booths/tiger.webp',
     className: 'left-[796px] top-[14px] h-[164px] w-[204px]',
     variant: 'top',
   },
@@ -75,7 +73,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://sabeco.com.vn&size=128',
     accent: '#b88405',
     deep: '#102139',
-    image: sharedBoothImage,
+    image: '/images/booths/sabeco.webp',
     className: 'left-[1008px] top-[14px] h-[164px] w-[204px]',
     variant: 'top',
   },
@@ -87,7 +85,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://abbott.com&size=128',
     accent: '#159bd3',
     deep: '#075985',
-    image: sharedBoothImage,
+    image: '/images/booths/abbott.webp',
     className: 'left-[242px] top-[252px] h-[142px] w-[236px]',
     variant: 'bottom',
   },
@@ -99,7 +97,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://nutifood.com.vn&size=128',
     accent: '#0c9b61',
     deep: '#065f46',
-    image: sharedBoothImage,
+    image: '/images/booths/nutifood.webp',
     className: 'left-[492px] top-[252px] h-[142px] w-[236px]',
     variant: 'bottom',
   },
@@ -111,7 +109,7 @@ const booths: Booth[] = [
     logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://vinamilk.com.vn&size=128',
     accent: '#1655d9',
     deep: '#11356f',
-    image: sharedBoothImage,
+    image: '/images/booths/vinamilk.webp',
     className: 'left-[742px] top-[252px] h-[142px] w-[236px]',
     variant: 'bottom',
   },
@@ -196,8 +194,8 @@ export function VirtualExpo() {
 
             <div className="expo-map-corridor absolute left-0 top-[188px] h-[68px] w-full overflow-hidden">
               <div className="expo-floor-grid absolute inset-0" />
-              <EntryGate label="Vào cổng" className="left-[18px] top-1/2 -translate-y-1/2" />
-              <EntryGate label="Ra cổng" className="right-[24px] top-1/2 -translate-y-1/2" />
+              <EntryGate label="Gate A" className="left-[18px] top-1/2 -translate-y-1/2" />
+              <EntryGate label="Gate B" className="right-[24px] top-1/2 -translate-y-1/2" />
 
               <span className="expo-map-arrow left-[170px]">&rsaquo;&rsaquo;</span>
               <span className="expo-map-arrow left-[274px]">&rsaquo;&rsaquo;</span>
