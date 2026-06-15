@@ -3,112 +3,99 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Facebook, Linkedin, Twitter, Instagram, Mail, Send } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Send, Twitter } from 'lucide-react';
+
+const footerLinks = {
+  'Về sự kiện': ['Giới thiệu', 'Ban tổ chức', 'Đối tác', 'Liên hệ'],
+  'Thông tin': ['Hướng dẫn tham quan', 'Câu hỏi thường gặp', 'Hỗ trợ kỹ thuật', 'Chính sách bảo mật'],
+};
 
 export function Footer() {
   return (
-    <footer className="relative bg-[#070b14] pt-24 pb-8 overflow-hidden">
-      {/* Top line accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-px bg-gradient-to-r from-transparent via-blue-500/30 to-transparent" />
-
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        {/* CTA Banner */}
-        <div className="p-[1px] rounded-2xl bg-gradient-to-r from-blue-500/30 via-blue-600/40 to-cyan-500/30 mb-16">
-          <div className="bg-gradient-to-r from-blue-600/90 to-blue-700/90 rounded-[calc(1rem-1px)] p-8 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+    <footer className="relative overflow-hidden bg-[#edf5ff] pb-8 pt-16">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
+        <div className="mb-14 rounded-[1.35rem] bg-blue-600 p-7 text-white shadow-[0_24px_80px_rgba(37,99,235,0.24)] sm:p-9">
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white mb-1">Sẵn sàng tham quan?</h3>
-              <p className="text-blue-100/60 text-sm">Đăng ký ngay để không bỏ lỡ sự kiện lớn nhất năm 2026</p>
+              <h3 className="text-2xl font-black tracking-[-0.02em]">Sẵn sàng tham quan?</h3>
+              <p className="mt-2 text-sm font-medium text-blue-100">Đăng ký ngay để không bỏ lỡ sự kiện nổi bật năm 2026.</p>
             </div>
-            <Button className="bg-white text-blue-600 hover:bg-blue-50 font-medium h-11 px-7 rounded-lg text-sm flex-shrink-0 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
-              Đăng ký miễn phí <Send className="ml-2 w-4 h-4" />
+            <Button className="h-11 rounded-[0.85rem] bg-white px-6 text-sm font-black text-blue-700 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-blue-50 active:scale-[0.98]">
+              Đăng ký miễn phí
+              <Send className="ml-2 h-4 w-4" />
             </Button>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Brand */}
+        <div className="grid grid-cols-1 gap-10 border-b border-slate-200 pb-12 md:grid-cols-2 lg:grid-cols-[1.4fr_0.75fr_0.75fr_1.2fr]">
           <div className="space-y-4">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <span className="font-bold text-white text-sm">FC</span>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="font-semibold text-[13px] text-white/90 tracking-tight">FUTURE CONSUMER</span>
-                <span className="font-semibold text-[13px] text-blue-400 tracking-tight">EXPO 2026</span>
-              </div>
+            <Link href="/" className="inline-flex">
+              <img src="/logos/fce-logo.svg" alt="Future Consumer Expo 2026" className="h-12 w-[214px] object-contain object-left" />
             </Link>
-            <p className="text-white/25 text-xs leading-relaxed max-w-xs">
-              Sự kiện triển lãm trực tuyến hàng đầu về công nghệ 
-              và trải nghiệm tiêu dùng tương lai.
+            <p className="max-w-sm text-sm font-medium leading-7 text-slate-500">
+              Sự kiện triển lãm trực tuyến hàng đầu về công nghệ và trải nghiệm tiêu dùng tương lai.
             </p>
           </div>
 
-          {/* Links */}
-          <div>
-            <h4 className="text-white/60 font-semibold mb-4 text-xs tracking-wider">VỀ SỰ KIỆN</h4>
-            <ul className="space-y-3">
-              {['Giới thiệu', 'Ban tổ chức', 'Đối tác', 'Liên hệ'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-white/25 hover:text-white/60 text-xs transition-colors duration-300">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <h4 className="mb-4 text-xs font-black uppercase tracking-[0.16em] text-slate-500">{title}</h4>
+              <ul className="space-y-3">
+                {links.map((item) => (
+                  <li key={item}>
+                    <Link href="#" className="text-sm font-semibold text-slate-500 transition-colors duration-300 hover:text-blue-700">
+                      {item}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
-          <div>
-            <h4 className="text-white/60 font-semibold mb-4 text-xs tracking-wider">THÔNG TIN</h4>
-            <ul className="space-y-3">
-              {['Hướng dẫn tham quan', 'Câu hỏi thường gặp', 'Hỗ trợ kỹ thuật', 'Chính sách bảo mật'].map((item) => (
-                <li key={item}>
-                  <Link href="#" className="text-white/25 hover:text-white/60 text-xs transition-colors duration-300">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Social + Newsletter */}
           <div className="space-y-6">
             <div>
-              <h4 className="text-white/60 font-semibold mb-4 text-xs tracking-wider">THEO DÕI CHÚNG TÔI</h4>
+              <h4 className="mb-4 text-xs font-black uppercase tracking-[0.16em] text-slate-500">Theo dõi chúng tôi</h4>
               <div className="flex gap-2">
-                {[
-                  { Icon: Facebook, hover: 'hover:bg-blue-600' },
-                  { Icon: Twitter, hover: 'hover:bg-sky-500' },
-                  { Icon: Linkedin, hover: 'hover:bg-blue-700' },
-                  { Icon: Instagram, hover: 'hover:bg-pink-600' },
-                ].map(({ Icon, hover }, i) => (
-                  <a key={i} href="#" className={`w-8 h-8 rounded-lg bg-white/[0.04] flex items-center justify-center text-white/30 ${hover} hover:text-white transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ring-1 ring-white/[0.04] hover:ring-transparent active:scale-[0.95]`}>
-                    <Icon className="w-3.5 h-3.5" />
+                {[Facebook, Twitter, Linkedin, Instagram].map((Icon, index) => (
+                  <a
+                    key={index}
+                    href="#"
+                    className="grid h-9 w-9 place-items-center rounded-[0.75rem] border border-slate-200 bg-white text-slate-500 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 active:scale-[0.95]"
+                  >
+                    <Icon className="h-4 w-4" />
                   </a>
                 ))}
               </div>
             </div>
 
             <div>
-              <h4 className="text-white/60 font-semibold mb-3 text-xs tracking-wider flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-blue-400/60" /> ĐĂNG KÝ NHẬN TIN
+              <h4 className="mb-3 flex items-center gap-1.5 text-xs font-black uppercase tracking-[0.16em] text-slate-500">
+                <Mail className="h-3.5 w-3.5 text-blue-600" />
+                Đăng ký nhận tin
               </h4>
               <div className="flex gap-2">
                 <Input
                   type="email"
                   placeholder="Nhập email của bạn"
-                  className="bg-white/[0.04] border-white/[0.06] text-white placeholder:text-white/20 rounded-lg text-xs h-9 focus:border-blue-500/40 focus:ring-blue-500/10"
+                  className="h-10 rounded-[0.75rem] border-slate-200 bg-white text-sm text-slate-900 placeholder:text-slate-400 focus:border-blue-400 focus:ring-blue-100"
                 />
-                <Button className="bg-blue-600 hover:bg-blue-500 text-white rounded-lg h-9 px-3 transition-all duration-300 active:scale-[0.95]">
-                  <Send className="w-3.5 h-3.5" />
+                <Button className="h-10 rounded-[0.75rem] bg-blue-600 px-3 text-white transition-all duration-300 hover:bg-blue-700 active:scale-[0.95]">
+                  <Send className="h-4 w-4" />
                 </Button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="pt-6 border-t border-white/[0.04] flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-white/15 text-[11px]">
-            &copy; 2026 Future Consumer Expo. All rights reserved.
-          </p>
+        <div className="flex flex-col items-center justify-between gap-3 pt-6 md:flex-row">
+          <p className="text-[11px] font-medium text-slate-400">&copy; 2026 Future Consumer Expo. All rights reserved.</p>
           <div className="flex items-center gap-5">
-            <Link href="#" className="text-white/15 hover:text-white/40 text-[11px] transition-colors duration-300">Điều khoản sử dụng</Link>
-            <Link href="#" className="text-white/15 hover:text-white/40 text-[11px] transition-colors duration-300">Chính sách bảo mật</Link>
+            <Link href="#" className="text-[11px] font-semibold text-slate-400 transition-colors duration-300 hover:text-blue-700">
+              Điều khoản sử dụng
+            </Link>
+            <Link href="#" className="text-[11px] font-semibold text-slate-400 transition-colors duration-300 hover:text-blue-700">
+              Chính sách bảo mật
+            </Link>
           </div>
         </div>
       </div>

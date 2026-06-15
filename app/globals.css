@@ -134,11 +134,11 @@
 /* Smooth scroll */
 html { scroll-behavior: smooth; }
 
-/* Custom scrollbar - consistent dark theme */
+/* Custom scrollbar */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #070b14; }
-::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #334155; }
+::-webkit-scrollbar-track { background: #edf5ff; }
+::-webkit-scrollbar-thumb { background: #b8c9de; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #8ea8c5; }
 
 :root {
   --expo-ease: cubic-bezier(0.32, 0.72, 0, 1);
@@ -146,13 +146,13 @@ html { scroll-behavior: smooth; }
 
 body {
   background:
-    linear-gradient(180deg, #05070d 0%, #070b14 38%, #0a111d 100%);
+    linear-gradient(180deg, #f5f9ff 0%, #ffffff 44%, #edf5ff 100%);
   overflow-x: hidden;
 }
 
 ::selection {
-  background: rgb(103 232 249 / 0.35);
-  color: white;
+  background: rgb(37 99 235 / 0.18);
+  color: #0f172a;
 }
 
 .hero-grid {
@@ -231,7 +231,19 @@ body {
 
 .expo-band {
   background:
-    linear-gradient(180deg, #070b14 0%, #0a111d 52%, #070b14 100%);
+    linear-gradient(180deg, #f7fbff 0%, #ffffff 52%, #eef5ff 100%);
+}
+
+.expo-hero-light {
+  background:
+    radial-gradient(circle at 86% 14%, rgb(59 130 246 / 0.18), transparent 25%),
+    radial-gradient(circle at 8% 22%, rgb(20 184 166 / 0.1), transparent 28%),
+    linear-gradient(180deg, #f6faff 0%, #edf6ff 54%, #f7fbff 100%);
+}
+
+.expo-section-light {
+  background:
+    linear-gradient(180deg, #f7fbff 0%, #ffffff 48%, #f4f8ff 100%);
 }
 
 .expo-band-light {

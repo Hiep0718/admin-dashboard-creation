@@ -10,6 +10,7 @@ import {
   Eye,
   Gift,
   MapPin,
+  Play,
   Route,
   Toilet,
   Users,
@@ -130,6 +131,12 @@ const booths: Booth[] = [
   },
 ];
 
+const heroStats = [
+  { Icon: Users, label: 'Visitors Online', value: '143' },
+  { Icon: Bot, label: 'Gian hàng', value: '8' },
+  { Icon: Activity, label: 'Tương tác', value: '92%' },
+];
+
 const stats = [
   { Icon: Users, label: 'Visitors Online', value: '143', tone: 'text-sky-300' },
   { Icon: Eye, label: 'Lượt tham quan', value: '2,458', tone: 'text-cyan-300' },
@@ -155,7 +162,7 @@ function UtilityBlock() {
       <div className="grid h-16 w-16 place-items-center rounded-[1rem] border border-slate-300/80 bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]">
         <Toilet className="h-8 w-8 text-slate-600" />
       </div>
-      <span className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">Toilet</span>
+      <span className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">Khu vệ sinh</span>
     </div>
   );
 }
@@ -291,19 +298,65 @@ export function VirtualExpo() {
   const bottomBooths = booths.slice(5);
 
   return (
-    <section id="trien-lam" className="expo-band-light relative overflow-hidden py-20 sm:py-28">
+    <section id="trien-lam" className="expo-hero-light relative overflow-hidden pb-16 pt-28 sm:pb-20 sm:pt-32">
+      <div className="absolute right-0 top-16 hidden h-52 w-52 translate-x-1/4 rounded-full bg-blue-200/50 blur-3xl lg:block" />
       <div className="mx-auto max-w-[1480px] px-4 sm:px-6">
-        <div data-reveal className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div data-reveal className="mb-8 grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.8fr)] lg:items-end">
+          <div>
+            <h1 className="max-w-5xl text-[clamp(2.55rem,6.3vw,6.6rem)] font-black uppercase leading-[0.92] tracking-[-0.055em] text-slate-950 text-balance">
+              Future Consumer <span className="text-blue-600">Expo 2026</span>
+            </h1>
+            <p className="mt-4 text-xl font-bold leading-snug text-blue-800 sm:text-2xl">
+              Where Technology Meets Consumer Experience
+            </p>
+            <p className="mt-4 max-w-[650px] text-base font-medium leading-7 text-slate-600">
+              Khám phá không gian triển lãm ảo với các thương hiệu hàng đầu và công nghệ tương lai trong lĩnh vực tiêu dùng.
+            </p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Button className="group h-12 rounded-[0.9rem] bg-blue-600 px-2.5 pl-5 text-sm font-black text-white shadow-[0_16px_34px_rgba(37,99,235,0.24)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-blue-700 active:scale-[0.98]">
+                <Play className="mr-2 h-4 w-4 fill-current" />
+                Bắt đầu tham quan
+                <span className="ml-4 grid h-8 w-8 place-items-center rounded-[0.65rem] bg-white/16 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </Button>
+              <Button
+                variant="outline"
+                className="h-12 rounded-[0.9rem] border-blue-200 bg-white px-5 text-sm font-bold text-blue-800 shadow-[0_12px_28px_rgba(15,23,42,0.06)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-blue-50 hover:text-blue-900 active:scale-[0.98]"
+              >
+                Hướng dẫn tham quan
+              </Button>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+            {heroStats.map(({ Icon, label, value }) => (
+              <div key={label} className="rounded-[1.1rem] border border-slate-200 bg-white/78 p-4 shadow-[0_16px_45px_rgba(15,23,42,0.08)] backdrop-blur">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-11 w-11 place-items-center rounded-full bg-blue-50 text-blue-700">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-2xl font-black leading-none text-slate-950 tabular-nums">{value}</p>
+                    <p className="mt-1 text-xs font-semibold text-slate-500">{label}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="flex items-start gap-4">
-            <div className="grid h-14 w-14 place-items-center rounded-[1.15rem] border border-blue-100 bg-white text-blue-600 shadow-[0_16px_42px_rgba(37,99,235,0.14)]">
-              <MapPin className="h-6 w-6" />
+            <div className="grid h-12 w-12 place-items-center rounded-[1rem] border border-blue-100 bg-white text-blue-600 shadow-[0_16px_42px_rgba(37,99,235,0.12)]">
+              <MapPin className="h-5 w-5" />
             </div>
             <div>
-              <h2 className="text-[clamp(2rem,4vw,4.6rem)] font-black uppercase leading-[0.94] tracking-[-0.035em] text-slate-950 text-balance">
+              <h2 className="text-2xl font-black uppercase tracking-[-0.035em] text-slate-950 sm:text-3xl">
                 Sơ đồ triển lãm
               </h2>
-              <p className="mt-3 max-w-[620px] text-sm font-medium leading-6 text-slate-500 sm:text-base">
-                Chọn gian hàng để xem mô hình trải nghiệm, lộ trình robot guide và dữ liệu tương tác theo thời gian thực.
+              <p className="mt-2 max-w-[620px] text-sm font-medium leading-6 text-slate-500">
+                Click vào gian hàng để khám phá trải nghiệm, lộ trình robot guide và dữ liệu tương tác.
               </p>
             </div>
           </div>
@@ -358,7 +411,7 @@ export function VirtualExpo() {
                   <div className="absolute left-1/2 top-1/2 flex w-[300px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[1rem] border border-cyan-200 bg-slate-900/72 px-5 py-4 text-center text-white shadow-[0_18px_50px_rgba(15,23,42,0.22),inset_0_1px_0_rgba(255,255,255,0.16)] backdrop-blur">
                     <div>
                       <p className="text-[13px] font-black uppercase tracking-[0.14em]">Smart Guided Experience Lane</p>
-                      <p className="mt-1 text-[11px] font-medium text-cyan-100/70">Hành trình trải nghiệm thông minh</p>
+                      <p className="mt-1 text-[11px] font-medium text-cyan-100/70">Hệ thống dẫn đường tự động đang hoạt động</p>
                     </div>
                   </div>
                 </div>
