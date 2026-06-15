@@ -6,17 +6,17 @@ import { ArrowRight, Bot, Cpu, Sparkles, Smartphone, ChevronLeft, ChevronRight }
 
 export function BrandHighlights() {
   return (
-    <section id="cong-nghe" className="py-24 bg-[#0c1220] relative overflow-hidden">
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-blue-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+    <section id="cong-nghe" className="expo-band py-24 sm:py-32 relative overflow-hidden">
+      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/18 to-transparent" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-10">
+        <h2 data-reveal className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-10">
           KHÁM PHÁ CÁC GIAN HÀNG NỔI BẬT
         </h2>
 
         {/* Double bezel card */}
-        <div className="p-1.5 rounded-[2rem] bg-white/[0.03] ring-1 ring-white/[0.04]">
-          <div className="bg-[#111827] rounded-[calc(2rem-0.375rem)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.04)] flex flex-col lg:flex-row">
+        <div data-reveal className="surface-glow p-1.5 rounded-[2rem] bg-white/[0.035] ring-1 ring-white/[0.06]">
+          <div className="bg-[#0b1422] rounded-[calc(2rem-0.375rem)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] flex flex-col lg:flex-row">
             {/* Left image */}
             <div className="w-full lg:w-[45%] h-72 lg:h-auto relative min-h-[340px]">
               <Image
@@ -69,7 +69,7 @@ export function BrandHighlights() {
                     { icon: <Sparkles className="w-3.5 h-3.5" />, label: 'Flavor Personalization' },
                     { icon: <Cpu className="w-3.5 h-3.5" />, label: 'Real-time Analytics' },
                   ].map((t, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-white/50 bg-white/[0.03] hover:bg-white/[0.06] px-3 py-2.5 rounded-lg ring-1 ring-white/[0.04] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] cursor-pointer group">
+                    <div key={i} className="motion-card flex items-center gap-2 text-xs text-white/50 bg-white/[0.03] hover:bg-white/[0.06] px-3 py-2.5 rounded-lg ring-1 ring-white/[0.04] cursor-pointer group">
                       <span className="text-blue-400 group-hover:text-blue-300 transition-colors">{t.icon}</span>
                       <span className="font-medium">{t.label}</span>
                     </div>

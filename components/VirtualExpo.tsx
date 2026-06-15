@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { ArrowRight, MapPin, Activity, User, Eye } from 'lucide-react';
+import type { CSSProperties } from 'react';
 
 const booths = [
   { id: '01', name: 'Coca-Cola Experience Hub', brand: 'Coca-Cola', desc: 'Trải nghiệm cá nhân hóa đồ uống bằng AI.', gradient: 'from-red-700 to-red-900', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://coca-cola.com&size=128', viewers: 42 },
@@ -16,7 +17,7 @@ const booths = [
 
 function BoothCard({ booth }: { booth: typeof booths[0] }) {
   return (
-    <div className={`group cursor-pointer relative overflow-hidden rounded-2xl transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:translate-y-[-4px] hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.4)]`}>
+    <div className={`motion-card group cursor-pointer relative overflow-hidden rounded-2xl hover:shadow-[0_24px_60px_-18px_rgba(34,211,238,0.35)]`}>
       {/* Outer shell */}
       <div className="p-[1px] rounded-2xl bg-gradient-to-b from-white/10 to-white/[0.02]">
         {/* Inner core */}
@@ -49,17 +50,17 @@ function BoothCard({ booth }: { booth: typeof booths[0] }) {
 
 export function VirtualExpo() {
   return (
-    <section id="trien-lam" className="py-24 bg-[#0c1220] relative">
+    <section id="trien-lam" className="expo-band relative overflow-hidden py-24 sm:py-32">
       <div className="max-w-[1400px] mx-auto px-6">
         {/* Outer shell */}
-        <div className="p-1.5 rounded-[2rem] bg-white/[0.03] ring-1 ring-white/[0.04]">
+        <div data-reveal className="surface-glow p-1.5 rounded-[2rem] bg-white/[0.035] ring-1 ring-white/[0.06]">
           {/* Inner core */}
-          <div className="bg-[#111827] rounded-[calc(2rem-0.375rem)] p-8 sm:p-10 relative overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.04)]">
+          <div className="bg-[#0b1422] rounded-[calc(2rem-0.375rem)] p-8 sm:p-10 relative overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)]">
             {/* Ambient glow */}
-            <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/20 to-transparent" />
 
             {/* Header */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
+            <div data-reveal style={{ '--reveal-delay': '90ms' } as CSSProperties} className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 gap-4">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center ring-1 ring-blue-500/20">
                   <MapPin className="w-4 h-4 text-blue-400" />
@@ -84,7 +85,7 @@ export function VirtualExpo() {
                   <div className="p-[1px] rounded-2xl bg-gradient-to-b from-white/[0.06] to-transparent">
                     <div className="bg-white/[0.03] rounded-[calc(1rem-1px)] p-5 flex items-center justify-center min-h-[180px]">
                       <div className="text-center space-y-2">
-                        <div className="w-12 h-12 rounded-xl bg-white/[0.04] flex items-center justify-center mx-auto ring-1 ring-white/[0.06]">
+                    <div className="w-12 h-12 rounded-xl bg-white/[0.04] flex items-center justify-center mx-auto ring-1 ring-white/[0.06]">
                           <User className="w-5 h-5 text-white/25" />
                         </div>
                         <span className="text-white/30 text-xs font-medium block">Khu vực chờ</span>
@@ -95,8 +96,8 @@ export function VirtualExpo() {
                 </div>
 
                 {/* Smart Guided Lane */}
-                <div className="p-[1px] rounded-2xl bg-gradient-to-r from-blue-500/20 via-transparent to-blue-500/20">
-                  <div className="bg-[#111827] rounded-[calc(1rem-1px)] py-4 px-6 flex items-center justify-center gap-4 relative overflow-hidden">
+                <div data-reveal style={{ '--reveal-delay': '120ms' } as CSSProperties} className="p-[1px] rounded-2xl bg-gradient-to-r from-cyan-300/30 via-white/5 to-cyan-300/30">
+                  <div className="bg-[#0b1422] rounded-[calc(1rem-1px)] py-4 px-6 flex items-center justify-center gap-4 relative overflow-hidden">
                     {/* Shimmer */}
                     <div className="absolute inset-0 pointer-events-none overflow-hidden">
                       <div className="w-1/4 h-full bg-gradient-to-r from-transparent via-blue-500/[0.06] to-transparent" style={{ animation: 'shimmer 5s linear infinite' }} />

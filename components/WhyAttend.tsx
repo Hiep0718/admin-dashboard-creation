@@ -35,21 +35,21 @@ const benefits = [
 
 export function WhyAttend() {
   return (
-    <section id="ve-su-kien" className="py-24 bg-[#0c1220] relative overflow-hidden">
+    <section id="ve-su-kien" className="expo-band py-24 sm:py-32 relative overflow-hidden">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-16 bg-gradient-to-b from-white/[0.06] to-transparent" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight text-center mb-4">
+        <h2 data-reveal className="text-2xl sm:text-4xl font-black text-white tracking-tight text-center mb-4">
           VÌ SAO NÊN THAM GIA?
         </h2>
-        <p className="text-white/30 text-sm text-center mb-14 max-w-md mx-auto">
+        <p data-reveal className="text-white/38 text-sm text-center mb-14 max-w-md mx-auto">
           Những lý do khiến hàng nghìn người đã tin tưởng và tham gia triển lãm
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div data-reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {benefits.map((b, i) => (
-            <div key={i} className="group p-[1px] rounded-2xl bg-gradient-to-b from-white/[0.06] to-transparent">
-              <div className="bg-[#111827] rounded-[calc(1rem-1px)] p-7 text-center space-y-4 h-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.04)] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-[#151d2e]">
+            <div key={i} className="motion-card group p-[1px] rounded-2xl bg-gradient-to-b from-white/[0.07] to-transparent hover:from-cyan-300/18">
+              <div className="bg-[#0b1422] rounded-[calc(1rem-1px)] p-7 text-center space-y-4 h-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-[#101b2d]">
                 <div className={`w-12 h-12 rounded-xl ${b.bg} ring-1 flex items-center justify-center mx-auto transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]`}>
                   <span className={`${b.accent} transition-colors duration-500`}>{b.icon}</span>
                 </div>

@@ -12,19 +12,19 @@ const schedule = [
 
 export function ScheduleSection() {
   return (
-    <section id="lich-trinh" className="py-24 bg-[#0c1220] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-60 h-60 bg-purple-500/[0.03] rounded-full blur-[100px] pointer-events-none" />
+    <section id="lich-trinh" className="expo-band py-24 sm:py-32 relative overflow-hidden">
+      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/16 to-transparent" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight mb-3">
+        <h2 data-reveal className="text-2xl sm:text-4xl font-black text-white tracking-tight mb-3">
           LỊCH TRÌNH SỰ KIỆN
         </h2>
-        <p className="text-white/30 text-sm mb-10">Chương trình ngày 15 tháng 6, 2026</p>
+        <p data-reveal className="text-white/38 text-sm mb-10">Chương trình ngày 15 tháng 6, 2026</p>
 
-        <div className="space-y-3">
+        <div data-reveal className="space-y-3">
           {schedule.map((item, i) => (
-            <div key={i} className="group p-[1px] rounded-xl bg-gradient-to-r from-white/[0.04] to-transparent hover:from-white/[0.08]  transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-              <div className="bg-[#111827] rounded-[calc(0.75rem-1px)] flex flex-col sm:flex-row items-stretch shadow-[inset_0_1px_1px_rgba(255,255,255,0.03)] overflow-hidden">
+            <div key={i} className="motion-card group p-[1px] rounded-xl bg-gradient-to-r from-white/[0.06] to-transparent hover:from-cyan-300/18">
+              <div className="bg-[#0b1422] rounded-[calc(0.75rem-1px)] flex flex-col sm:flex-row items-stretch shadow-[inset_0_1px_1px_rgba(255,255,255,0.04)] overflow-hidden">
                 {/* Time */}
                 <div className="sm:w-44 flex-shrink-0 bg-white/[0.02] px-5 py-4 flex items-center gap-2.5 border-b sm:border-b-0 sm:border-r border-white/[0.04]">
                   <Clock className="w-3.5 h-3.5 text-blue-400/60 flex-shrink-0" />

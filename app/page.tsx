@@ -14,7 +14,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="min-h-[100dvh] bg-[#070b14] font-sans antialiased">
+    <div className="min-h-[100dvh] bg-[#05070d] font-sans antialiased">
       <Header />
       <main>
         <HeroSection />

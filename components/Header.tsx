@@ -2,101 +2,106 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { Globe2 } from 'lucide-react';
 import { useState } from 'react';
-import { Globe, Menu, X } from 'lucide-react';
 
 const navItems = [
-  { href: '#trien-lam', label: 'TRIỂN LÃM', active: true },
-  { href: '#cong-nghe', label: 'CÔNG NGHỆ' },
-  { href: '#lich-trinh', label: 'LỊCH TRÌNH' },
-  { href: '#tin-tuc', label: 'TIN TỨC' },
-  { href: '#ve-su-kien', label: 'VỀ SỰ KIỆN' },
+  { href: '#trien-lam', label: 'Triển lãm', active: true },
+  { href: '#cong-nghe', label: 'Công nghệ' },
+  { href: '#lich-trinh', label: 'Lịch trình' },
+  { href: '#tin-tuc', label: 'Tin tức' },
+  { href: '#ve-su-kien', label: 'Về sự kiện' },
 ];
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 z-40 w-full">
-      {/* Outer shell - double bezel */}
-      <div className="bg-[#070b14]/90 backdrop-blur-xl border-b border-white/[0.06]">
-        <div className="max-w-[1400px] mx-auto flex h-16 items-center justify-between px-6">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:bg-blue-500">
-              <span className="font-bold text-white text-sm tracking-tight">FC</span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="font-semibold text-[13px] text-white/90 tracking-tight">FUTURE CONSUMER</span>
-              <span className="font-semibold text-[13px] text-blue-400 tracking-tight">EXPO 2026</span>
-            </div>
-          </Link>
-
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-[13px] font-medium px-4 py-2 rounded-lg transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] ${
-                  item.active
-                    ? 'text-white bg-white/[0.06]'
-                    : 'text-white/50 hover:text-white/80 hover:bg-white/[0.04]'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Actions */}
-          <div className="hidden sm:flex items-center gap-3">
-            <button className="flex items-center gap-1.5 text-[13px] text-white/50 hover:text-white/80 px-3 py-2 rounded-lg hover:bg-white/[0.04] transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]">
-              <Globe className="w-4 h-4" />
-              <span>VI</span>
-            </button>
-            <Link href="/login">
-              <Button className="bg-blue-600 hover:bg-blue-500 text-white font-medium text-[13px] px-5 h-9 rounded-lg transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
-                ĐĂNG NHẬP
-              </Button>
-            </Link>
+    <header className="fixed inset-x-0 top-0 z-40 px-4 pt-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-[1220px] items-center justify-between rounded-full border border-white/10 bg-[#06101a]/72 px-3 pl-4 shadow-[0_18px_70px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(255,255,255,0.14)] backdrop-blur-2xl">
+        <Link href="/" className="group flex items-center gap-3">
+          <div className="grid h-10 w-10 place-items-center rounded-full bg-cyan-300 text-sm font-black text-[#06111c] shadow-[0_14px_34px_rgba(34,211,238,0.22)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105">
+            FC
           </div>
+          <div className="hidden flex-col leading-none sm:flex">
+            <span className="text-[12px] font-bold uppercase tracking-[0.04em] text-white">Future Consumer</span>
+            <span className="text-[12px] font-bold uppercase tracking-[0.04em] text-cyan-200">Expo 2026</span>
+          </div>
+        </Link>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 text-white/60 hover:text-white transition-colors rounded-lg hover:bg-white/[0.04]"
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        <nav className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`rounded-full px-4 py-2.5 text-[13px] font-semibold transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                item.active
+                  ? 'bg-white text-[#07111d] shadow-[0_10px_30px_rgba(255,255,255,0.12)]'
+                  : 'text-white/56 hover:bg-white/[0.07] hover:text-white'
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden items-center gap-2 sm:flex">
+          <button className="group flex h-10 items-center gap-2 rounded-full px-3 text-[13px] font-semibold text-white/58 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/[0.07] hover:text-white">
+            <Globe2 className="h-4 w-4 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:rotate-12" />
+            VI
           </button>
+          <Link href="/login">
+            <Button className="h-10 rounded-full bg-white px-5 text-[13px] font-bold text-[#07111d] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-cyan-200 active:scale-[0.98]">
+              Đăng nhập
+            </Button>
+          </Link>
         </div>
+
+        <button
+          onClick={() => setOpen((value) => !value)}
+          className="relative grid h-11 w-11 place-items-center rounded-full bg-white/[0.07] text-white transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/[0.12] lg:hidden"
+          aria-label="Mở menu"
+          aria-expanded={open}
+        >
+          <span
+            className={`absolute h-px w-5 bg-current transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              open ? 'translate-y-0 rotate-45' : '-translate-y-1.5'
+            }`}
+          />
+          <span
+            className={`absolute h-px w-5 bg-current transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+              open ? 'translate-y-0 -rotate-45' : 'translate-y-1.5'
+            }`}
+          />
+        </button>
       </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <div className="lg:hidden bg-[#070b14]/95 backdrop-blur-xl border-b border-white/[0.06]">
-          <nav className="max-w-[1400px] mx-auto flex flex-col gap-1 px-6 py-5">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className={`text-sm font-medium px-4 py-3 rounded-lg transition-all duration-300 ${
-                  item.active ? 'text-white bg-white/[0.06]' : 'text-white/60 hover:text-white hover:bg-white/[0.04]'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <div className="pt-4 mt-2 flex items-center gap-3 border-t border-white/[0.06]">
-              <Link href="/login" className="flex-1">
-                <Button className="w-full bg-blue-600 text-white rounded-lg h-10">ĐĂNG NHẬP</Button>
-              </Link>
-            </div>
-          </nav>
-        </div>
-      )}
+      <div
+        className={`mx-auto mt-3 max-w-[1220px] overflow-hidden rounded-[2rem] border border-white/10 bg-[#06101a]/86 shadow-[0_28px_90px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.12)] backdrop-blur-2xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] lg:hidden ${
+          open ? 'max-h-[520px] opacity-100' : 'max-h-0 border-transparent opacity-0'
+        }`}
+      >
+        <nav className="grid gap-1 p-3">
+          {navItems.map((item, index) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              style={{ transitionDelay: open ? `${index * 45}ms` : '0ms' }}
+              className={`rounded-[1.4rem] px-5 py-4 text-base font-bold transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                open ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+              } ${item.active ? 'bg-white text-[#07111d]' : 'text-white/64 hover:bg-white/[0.07] hover:text-white'}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <Link href="/login" onClick={() => setOpen(false)} className="mt-2">
+            <Button className="h-12 w-full rounded-full bg-cyan-300 text-sm font-black text-[#06111c] hover:bg-white">
+              Đăng nhập
+            </Button>
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

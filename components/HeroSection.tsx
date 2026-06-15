@@ -2,8 +2,14 @@
 
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Users, Store, TrendingUp, Play, BookOpen } from 'lucide-react';
-import { useEffect, useState, useRef } from 'react';
+import { ArrowUpRight, BookOpen, Play, Radio, Route, Sparkles, Store, TrendingUp, Users } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+
+const stats = [
+  { Icon: Users, value: 143, label: 'Visitors online', tone: 'text-sky-200' },
+  { Icon: Store, value: 8, label: 'Gian hàng mở', tone: 'text-cyan-200' },
+  { Icon: TrendingUp, value: 92, label: 'Tương tác', suffix: '%', tone: 'text-emerald-200' },
+];
 
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -11,115 +17,172 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const ran = useRef(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting && !ran.current) {
-          ran.current = true;
-          let t0 = 0;
-          const step = (ts: number) => {
-            if (!t0) t0 = ts;
-            const p = Math.min((ts - t0) / 1800, 1);
-            const ease = 1 - Math.pow(1 - p, 3);
-            setCount(Math.floor(ease * target));
-            if (p < 1) requestAnimationFrame(step);
-          };
-          requestAnimationFrame(step);
-        }
+    const element = ref.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || ran.current) return;
+
+        ran.current = true;
+        let start = 0;
+        let frame = 0;
+
+        const step = (timestamp: number) => {
+          if (!start) start = timestamp;
+          const progress = Math.min((timestamp - start) / 1600, 1);
+          const eased = 1 - Math.pow(1 - progress, 4);
+          setCount(Math.floor(eased * target));
+
+          if (progress < 1) {
+            frame = requestAnimationFrame(step);
+          }
+        };
+
+        frame = requestAnimationFrame(step);
+
+        return () => cancelAnimationFrame(frame);
       },
       { threshold: 0.5 }
     );
-    obs.observe(el);
-    return () => obs.disconnect();
+
+    observer.observe(element);
+    return () => observer.disconnect();
   }, [target]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  );
 }
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-[100dvh] flex items-center bg-[#070b14] overflow-hidden pt-16">
-      {/* Background layers */}
-      <div className="absolute inset-0">
-        {/* Subtle grid */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: 'linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)',
-          backgroundSize: '80px 80px'
-        }} />
-        {/* Gradient orbs */}
-        <div className="absolute top-[10%] right-[15%] w-[500px] h-[500px] bg-blue-600/8 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[20%] left-[10%] w-[300px] h-[300px] bg-cyan-500/6 rounded-full blur-[100px]" />
-      </div>
+    <section className="relative isolate min-h-[100dvh] overflow-hidden bg-[#05070d] pt-24 text-white">
+      <Image
+        src="/images/robot.jpg"
+        alt="Robot NOVA-X1 tại khu triển lãm Future Consumer Expo 2026"
+        fill
+        priority
+        sizes="100vw"
+        className="absolute inset-0 -z-30 object-cover object-[68%_50%] opacity-80"
+      />
 
-      <div className="max-w-[1400px] mx-auto px-6 relative z-10 w-full py-24">
-        <div className="flex flex-col lg:flex-row items-center gap-20">
-          {/* Left - content */}
-          <div className="w-full lg:w-[58%] space-y-8">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.08] tracking-tight text-white">
-              FUTURE CONSUMER{' '}
-              <span className="text-blue-400">EXPO 2026</span>
-            </h1>
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,#05070d_0%,rgba(5,7,13,0.94)_31%,rgba(5,7,13,0.68)_54%,rgba(5,7,13,0.24)_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_72%_38%,rgba(69,163,255,0.2),transparent_32%),linear-gradient(180deg,rgba(5,7,13,0)_65%,#070b14_100%)]" />
+      <div className="hero-grid absolute inset-0 -z-10 opacity-[0.22]" />
+      <div className="scanline absolute inset-x-0 top-0 -z-10 h-px bg-cyan-200/70" />
 
-            <p className="text-lg text-blue-300/70 font-medium">
-              Where Technology Meets Consumer Experience
-            </p>
+      <div className="mx-auto grid min-h-[calc(100dvh-6rem)] max-w-[1440px] grid-cols-1 items-end px-5 pb-8 pt-10 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(360px,0.7fr)] lg:items-center lg:pb-10 lg:pt-0">
+        <div className="max-w-4xl pb-8 lg:pb-0">
+          <div className="hero-kicker mb-7 inline-flex items-center gap-2 rounded-full border border-cyan-200/15 bg-white/[0.055] px-3.5 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]">
+            <Radio className="h-3.5 w-3.5 text-cyan-200" />
+            Live virtual expo
+          </div>
 
-            <p className="text-base text-white/45 max-w-[520px] leading-relaxed">
-              Khám phá không gian triển lãm ảo với các thương hiệu hàng đầu 
-              và công nghệ tương lai trong lĩnh vực tiêu dùng.
-            </p>
+          <h1 className="hero-title max-w-[900px] text-[clamp(3.35rem,8vw,8.8rem)] font-black uppercase leading-[0.91] text-white">
+            Future Consumer
+            <span className="block text-transparent [-webkit-text-stroke:1.4px_rgba(196,231,255,0.9)] [text-shadow:0_0_34px_rgba(56,189,248,0.24)]">
+              Expo 2026
+            </span>
+          </h1>
 
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <Button className="bg-blue-600 hover:bg-blue-500 text-white h-12 px-7 rounded-lg text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98] shadow-[0_0_24px_rgba(59,130,246,0.2)]">
-                <Play className="mr-2 w-4 h-4" /> BẮT ĐẦU THAM QUAN
-              </Button>
-              <Button variant="outline" className="bg-transparent border-white/10 text-white/70 hover:text-white hover:bg-white/[0.04] h-12 px-7 rounded-lg text-sm font-medium transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]">
-                <BookOpen className="mr-2 w-4 h-4" /> HƯỚNG DẪN THAM QUAN
-              </Button>
-            </div>
+          <p className="hero-subtitle mt-7 max-w-[650px] text-xl font-semibold leading-snug text-sky-100 sm:text-2xl">
+            Where Technology Meets Consumer Experience
+          </p>
 
-            {/* Stats row */}
-            <div className="flex flex-wrap items-center gap-10 pt-8 border-t border-white/[0.06]">
-              {[
-                { Icon: Users, value: 143, label: 'Visitors Online', color: 'text-blue-400', bg: 'bg-blue-500/10' },
-                { Icon: Store, value: 8, label: 'Gian hàng', color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
-                { Icon: TrendingUp, value: 92, label: 'Tương tác', suffix: '%', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
-              ].map((s, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-lg ${s.bg} flex items-center justify-center`}>
-                    <s.Icon className={`w-5 h-5 ${s.color}`} />
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-white tabular-nums">
-                      <Counter target={s.value} suffix={s.suffix} />
-                    </div>
-                    <div className="text-xs text-white/35">{s.label}</div>
-                  </div>
+          <p className="hero-copy mt-5 max-w-[590px] text-base leading-8 text-white/64 sm:text-lg">
+            Khám phá không gian triển lãm ảo với robot NOVA-X1, gian hàng tương tác và các trải nghiệm tiêu dùng thế hệ mới.
+          </p>
+
+          <div className="hero-actions mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <Button className="group h-14 rounded-full bg-cyan-300 px-2.5 pl-6 text-sm font-bold text-[#06111c] shadow-[0_18px_70px_rgba(34,211,238,0.24)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]">
+              <Play className="mr-2 h-4 w-4 fill-current" />
+              Bắt đầu tham quan
+              <span className="ml-4 grid h-9 w-9 place-items-center rounded-full bg-[#06111c] text-cyan-100 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1 group-hover:-translate-y-0.5">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Button>
+
+            <Button
+              variant="outline"
+              className="group h-14 rounded-full border-white/12 bg-white/[0.045] px-2.5 pl-6 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:border-white/28 hover:bg-white/[0.08] hover:text-white active:scale-[0.98]"
+            >
+              <BookOpen className="mr-2 h-4 w-4" />
+              Hướng dẫn tham quan
+              <span className="ml-4 grid h-9 w-9 place-items-center rounded-full bg-white/[0.08] text-white transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-1">
+                <ArrowUpRight className="h-4 w-4" />
+              </span>
+            </Button>
+          </div>
+        </div>
+
+        <div className="pointer-events-none relative hidden min-h-[620px] lg:block">
+          <div className="hud-card hud-card-primary absolute right-0 top-[16%] w-[270px] rounded-[2rem] border border-white/12 bg-[#07111d]/58 p-2 shadow-[0_28px_90px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.14)]">
+            <div className="rounded-[calc(2rem-0.5rem)] bg-white/[0.045] p-5">
+              <div className="flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-100/70">
+                NOVA-X1
+                <span className="flex items-center gap-1.5 text-emerald-200">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_14px_rgba(110,231,183,0.9)]" />
+                  Active
+                </span>
+              </div>
+              <div className="mt-5 grid grid-cols-[1fr_auto] items-end gap-4">
+                <div>
+                  <p className="text-3xl font-black leading-none text-white">92%</p>
+                  <p className="mt-1 text-xs text-white/42">pin hướng dẫn</p>
                 </div>
-              ))}
+                <Sparkles className="mb-1 h-8 w-8 text-cyan-200" />
+              </div>
+              <div className="mt-5 h-1.5 overflow-hidden rounded-full bg-white/10">
+                <div className="status-meter h-full w-[92%] rounded-full bg-cyan-200" />
+              </div>
             </div>
           </div>
 
-          {/* Right - robot */}
-          <div className="w-full lg:w-[42%] flex justify-center lg:justify-end">
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80">
-              {/* Soft glow behind */}
-              <div className="absolute inset-[-20%] bg-blue-500/8 rounded-full blur-[60px]" />
-              <Image
-                src="/images/robot-guide.png"
-                alt="Robot Guide"
-                fill
-                className="object-contain relative z-10 drop-shadow-[0_0_30px_rgba(59,130,246,0.15)]"
-                priority
-              />
+          <div className="hud-card hud-card-secondary absolute bottom-[17%] right-[42%] w-[240px] rounded-[1.7rem] border border-white/10 bg-[#06101a]/62 p-2 shadow-[0_26px_80px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.12)]">
+            <div className="rounded-[calc(1.7rem-0.5rem)] bg-white/[0.045] p-5">
+              <div className="flex items-center gap-3">
+                <div className="grid h-11 w-11 place-items-center rounded-full bg-cyan-200/12 text-cyan-100">
+                  <Route className="h-5 w-5" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-white">Smart route</p>
+                  <p className="text-xs text-white/42">3 điểm dừng đang mở</p>
+                </div>
+              </div>
+              <div className="mt-4 flex items-center gap-2">
+                {[0, 1, 2, 3].map((dot) => (
+                  <span
+                    key={dot}
+                    className={`h-2 rounded-full ${dot === 1 ? 'w-10 bg-cyan-200' : 'w-2 bg-white/18'}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0c1220] to-transparent" />
+      <div className="relative z-10 mx-auto max-w-[1440px] px-5 pb-10 sm:px-8 lg:-mt-24 lg:pb-12">
+        <div className="hero-stats grid gap-3 rounded-[2rem] border border-white/10 bg-[#07111d]/66 p-2 shadow-[0_30px_100px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.12)] sm:grid-cols-3 lg:max-w-3xl">
+          {stats.map(({ Icon, value, label, suffix, tone }) => (
+            <div key={label} className="group flex items-center gap-4 rounded-[1.55rem] bg-white/[0.045] px-5 py-4 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/[0.075]">
+              <div className="grid h-12 w-12 place-items-center rounded-full bg-white/[0.07] text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105">
+                <Icon className="h-5 w-5" />
+              </div>
+              <div>
+                <div className={`text-3xl font-black leading-none tabular-nums ${tone}`}>
+                  <Counter target={value} suffix={suffix} />
+                </div>
+                <div className="mt-1 text-xs font-medium text-white/42">{label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

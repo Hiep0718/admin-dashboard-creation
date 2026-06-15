@@ -1,14 +1,18 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { MotionProvider } from '@/components/MotionProvider'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const geist = Geist({ subsets: ['latin'] });
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+});
 
 export const metadata: Metadata = {
-  title: 'Triển Lãm Công Nghệ Tương Lai',
-  description: 'Khám phá tương lai với công nghệ robot AI tiên tiến',
+  title: 'Future Consumer Expo 2026',
+  description: 'Triển lãm tiêu dùng tương lai với robot AI, gian hàng tương tác và trải nghiệm ảo.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -35,8 +39,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className="font-sans antialiased">
+    <html lang="vi">
+      <body className={`${geist.className} ${geistMono.variable} font-sans antialiased`}>
+        <MotionProvider />
         {children}
         <Analytics />
       </body>

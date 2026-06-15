@@ -29,12 +29,12 @@ const news = [
 
 export function NewsSection() {
   return (
-    <section id="tin-tuc" className="py-24 bg-[#0c1220] relative overflow-hidden">
-      <div className="absolute bottom-0 left-0 w-60 h-60 bg-cyan-500/[0.03] rounded-full blur-[100px] pointer-events-none" />
+    <section id="tin-tuc" className="expo-band py-24 sm:py-32 relative overflow-hidden">
+      <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-cyan-200/16 to-transparent" />
 
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
-        <div className="flex items-center justify-between mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+        <div data-reveal className="flex items-center justify-between mb-10">
+          <h2 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
             TIN TỨC VÀ CẬP NHẬT
           </h2>
           <button className="hidden sm:flex items-center gap-1.5 text-blue-400 text-xs font-medium hover:text-blue-300 transition-colors duration-300">
@@ -42,10 +42,10 @@ export function NewsSection() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div data-reveal className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {news.map((item, i) => (
-            <article key={i} className="group p-[1px] rounded-2xl bg-gradient-to-b from-white/[0.06] to-transparent hover:from-white/[0.1] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
-              <div className="bg-[#111827] rounded-[calc(1rem-1px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.04)] h-full flex flex-col cursor-pointer">
+            <article key={i} className="motion-card group p-[1px] rounded-2xl bg-gradient-to-b from-white/[0.07] to-transparent hover:from-cyan-300/20">
+              <div className="bg-[#0b1422] rounded-[calc(1rem-1px)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] h-full flex flex-col cursor-pointer">
                 <div className="relative h-44 overflow-hidden">
                   <Image
                     src={item.image}
