@@ -5,7 +5,6 @@ import {
   Activity,
   ArrowRight,
   Bot,
-  Clock,
   DoorOpen,
   Eye,
   Gift,
@@ -137,20 +136,6 @@ const heroStats = [
   { Icon: Activity, label: 'Tương tác', value: '92%' },
 ];
 
-const stats = [
-  { Icon: Users, label: 'Visitors Online', value: '143', tone: 'text-sky-300' },
-  { Icon: Eye, label: 'Lượt tham quan', value: '2,458', tone: 'text-cyan-300' },
-  { Icon: Activity, label: 'Tỷ lệ tương tác hôm nay', value: '92%', tone: 'text-emerald-300' },
-  { Icon: Clock, label: 'Thời gian trung bình', value: '04:32', tone: 'text-blue-300' },
-];
-
-const activities = [
-  { user: 'Visitor_1087', action: 'Vừa ghé thăm gian Coca-Cola', time: '2p', dot: 'bg-rose-400' },
-  { user: 'Visitor_0942', action: 'Đang xem mô hình ủ bia Heineken', time: '5p', dot: 'bg-lime-400' },
-  { user: 'Visitor_2011', action: 'Tương tác với Robot Guide', time: '8p', dot: 'bg-sky-400' },
-  { user: 'Visitor_4561', action: 'Đăng ký nhận bản tin sự kiện', time: '12p', dot: 'bg-violet-400' },
-  { user: 'Visitor_3320', action: 'Tham quan gian Nutifood', time: '14p', dot: 'bg-indigo-400' },
-];
 
 function ExpoLight({ className = '' }: { className?: string }) {
   return <span className={`expo-floor-light ${className}`} />;
@@ -239,60 +224,6 @@ function BoothCard({ booth, position }: { booth: Booth; position: 'top' | 'botto
   );
 }
 
-function LiveSidebar() {
-  return (
-    <aside className="grid gap-4 xl:w-[330px] xl:flex-shrink-0">
-      <div className="rounded-[1.4rem] bg-[#07162b] p-5 text-white shadow-[0_22px_70px_rgba(8,22,43,0.24),inset_0_1px_0_rgba(255,255,255,0.08)]">
-        <h3 className="flex items-center gap-2 text-sm font-black uppercase tracking-[0.04em]">
-          <Activity className="h-4 w-4 text-emerald-300" />
-          Thống kê trực tiếp
-        </h3>
-        <div className="mt-5 grid gap-3">
-          {stats.map(({ Icon, label, value, tone }) => (
-            <div key={label} className="flex items-center justify-between gap-4 rounded-[1rem] bg-white/[0.045] px-3.5 py-3">
-              <div className="flex min-w-0 items-center gap-3">
-                <div className="grid h-9 w-9 place-items-center rounded-full bg-cyan-200/10 text-cyan-100">
-                  <Icon className="h-4 w-4" />
-                </div>
-                <span className="truncate text-xs font-medium text-white/48">{label}</span>
-              </div>
-              <span className={`font-mono text-sm font-black tabular-nums ${tone}`}>{value}</span>
-            </div>
-          ))}
-          <div className="mt-1 flex items-center justify-between rounded-[1rem] border border-white/10 px-3.5 py-3">
-            <span className="text-xs font-medium text-white/48">Robot Guide</span>
-            <span className="flex items-center gap-2 text-xs font-bold text-emerald-300">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,0.8)]" />
-              2 hoạt động
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div className="rounded-[1.4rem] bg-[#07162b] p-5 text-white shadow-[0_22px_70px_rgba(8,22,43,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]">
-        <div className="flex items-center justify-between gap-3">
-          <h3 className="text-sm font-black uppercase tracking-[0.04em]">Hoạt động gần đây</h3>
-          <button className="rounded-full border border-white/10 px-3 py-1.5 text-[11px] font-semibold text-white/48 transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/10 hover:text-white">
-            Xem tất cả
-          </button>
-        </div>
-        <div className="mt-5 grid gap-4">
-          {activities.map((activity) => (
-            <div key={`${activity.user}-${activity.time}`} className="flex items-start gap-3">
-              <span className={`mt-1.5 h-2 w-2 rounded-full ${activity.dot}`} />
-              <div className="min-w-0 flex-1">
-                <p className="text-sm font-bold leading-tight text-white/88">{activity.user}</p>
-                <p className="mt-1 truncate text-xs text-white/36">{activity.action}</p>
-              </div>
-              <span className="text-[11px] text-white/28">{activity.time}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </aside>
-  );
-}
-
 export function VirtualExpo() {
   const topBooths = booths.slice(0, 5);
   const bottomBooths = booths.slice(5);
@@ -367,8 +298,8 @@ export function VirtualExpo() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-5 xl:flex-row">
-          <div data-reveal style={{ '--reveal-delay': '90ms' } as CSSProperties} className="min-w-0 flex-1">
+        <div className="grid gap-5">
+          <div data-reveal style={{ '--reveal-delay': '90ms' } as CSSProperties} className="min-w-0">
             <div className="overflow-x-auto rounded-[1.5rem] border border-slate-200 bg-white p-3 shadow-[0_30px_100px_rgba(15,23,42,0.12)]">
               <div className="expo-floor-shell min-w-[1080px] rounded-[1.2rem] p-4">
                 <div className="grid grid-cols-[150px_repeat(5,minmax(150px,1fr))] gap-2">
@@ -444,10 +375,6 @@ export function VirtualExpo() {
                 </div>
               ))}
             </div>
-          </div>
-
-          <div data-reveal style={{ '--reveal-delay': '150ms' } as CSSProperties}>
-            <LiveSidebar />
           </div>
         </div>
       </div>
