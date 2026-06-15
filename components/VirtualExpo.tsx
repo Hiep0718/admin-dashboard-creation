@@ -4,14 +4,14 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronLeft, ChevronRight, MapPin, Activity, User } from 'lucide-react';
 
 const booths = [
-  { id: '01', name: 'Coca-Cola Experience Hub', brand: 'Coca-Cola', desc: 'Trải nghiệm cá nhân hóa đồ uống bằng AI.', color: 'bg-red-700', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg' },
-  { id: '02', name: 'Pepsi Interactive Lab', brand: 'PEPSI', desc: 'Tương tác thông minh, kết nối khách hàng.', color: 'bg-blue-800', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Pepsi_logo_2014.svg' },
-  { id: '03', name: 'Heineken Future Brewing', brand: 'Heineken', desc: 'Công nghệ ủ bia thông minh.', color: 'bg-green-800', logo: 'https://upload.wikimedia.org/wikipedia/commons/2/22/Heineken_logo.svg' },
-  { id: '04', name: 'Tiger Smart Distribution', brand: 'Tiger', desc: 'Logistics thông minh, tối ưu chuỗi cung ứng.', color: 'bg-blue-900', logo: 'https://upload.wikimedia.org/wikipedia/en/d/df/Tiger_Beer_Logo.svg' },
-  { id: '05', name: 'Sabeco Industry Pavilion', brand: 'SABECO', desc: 'Đổi mới ngành đồ uống Việt Nam.', color: 'bg-yellow-600', logo: 'https://cdn.haitrieu.com/wp-content/uploads/2022/01/Logo-Sabeco-V.png' },
-  { id: '06', name: 'Abbott Healthcare', brand: 'Abbott', desc: 'Giải pháp chăm sóc sức khỏe tiên tiến.', color: 'bg-sky-600', logo: 'https://upload.wikimedia.org/wikipedia/commons/b/be/Abbott_Laboratories_logo.svg' },
-  { id: '07', name: 'Nutifood Nutrition Lab', brand: 'Nutifood', desc: 'Dinh dưỡng cá nhân hóa dựa trên dữ liệu.', color: 'bg-emerald-600', logo: 'https://cdn.haitrieu.com/wp-content/uploads/2022/11/Logo-Nutifood.png' },
-  { id: '08', name: 'Vinamilk Future Zone', brand: 'Vinamilk', desc: 'Công nghệ sản xuất sữa thông minh thế hệ mới.', color: 'bg-blue-600', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/1d/Vinamilk_logo.svg' },
+  { id: '01', name: 'Coca-Cola Experience Hub', brand: 'Coca-Cola', desc: 'Trải nghiệm cá nhân hóa đồ uống bằng AI.', color: 'bg-red-700', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://coca-cola.com&size=128' },
+  { id: '02', name: 'Pepsi Interactive Lab', brand: 'PEPSI', desc: 'Tương tác thông minh, kết nối khách hàng.', color: 'bg-blue-800', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://pepsi.com&size=128' },
+  { id: '03', name: 'Heineken Future Brewing', brand: 'Heineken', desc: 'Công nghệ ủ bia thông minh.', color: 'bg-green-800', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://heineken.com&size=128' },
+  { id: '04', name: 'Tiger Smart Distribution', brand: 'Tiger', desc: 'Logistics thông minh, tối ưu chuỗi cung ứng.', color: 'bg-blue-900', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://tigerbeer.com&size=128' },
+  { id: '05', name: 'Sabeco Industry Pavilion', brand: 'SABECO', desc: 'Đổi mới ngành đồ uống Việt Nam.', color: 'bg-yellow-600', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://sabeco.com.vn&size=128' },
+  { id: '06', name: 'Abbott Healthcare', brand: 'Abbott', desc: 'Giải pháp chăm sóc sức khỏe tiên tiến.', color: 'bg-sky-600', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://abbott.com&size=128' },
+  { id: '07', name: 'Nutifood Nutrition Lab', brand: 'Nutifood', desc: 'Dinh dưỡng cá nhân hóa dựa trên dữ liệu.', color: 'bg-emerald-600', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://nutifood.com.vn&size=128' },
+  { id: '08', name: 'Vinamilk Future Zone', brand: 'Vinamilk', desc: 'Công nghệ sản xuất sữa thông minh thế hệ mới.', color: 'bg-blue-600', logo: 'https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://vinamilk.com.vn&size=128' },
 ];
 
 export function VirtualExpo() {
