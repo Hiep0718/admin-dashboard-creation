@@ -24,27 +24,98 @@
     "Nhận diện cử chỉ",
     "Nhận thức không gian 360 độ"
   ],
-  "currentLocation": "Phòng Trưng Bày A",
-  "nextScheduledMaintenance": "2024-04-15",
+  "currentLocation": "Smart Guided Experience Lane, gần gian hàng Nutifood",
+  "position": {
+    "zone": "Smart Guided Experience Lane",
+    "x": 58,
+    "y": 55,
+    "heading": 82,
+    "accuracy": "0.42m",
+    "lastPing": "2026-06-16 14:37:18"
+  },
+  "nextScheduledMaintenance": "2026-06-24",
   "operatingHours": {
     "start": "08:00",
     "end": "20:00"
   },
+  "mqtt": {
+    "broker": "mqtt.fce.local:1883",
+    "clientId": "admin-console-nova-x1",
+    "connection": "connected",
+    "lastSync": "2026-06-16 14:39:10",
+    "commands": [
+      {
+        "id": "cmd-1842",
+        "timestamp": "2026-06-16 14:38:22",
+        "operator": "ops-admin",
+        "topic": "fce/robot/nova-x1/navigation/route",
+        "command": "ROUTE_TO_ZONE",
+        "payload": "{\"target\":\"Nutifood\",\"mode\":\"visitor_escort\"}",
+        "status": "acknowledged",
+        "qos": 1,
+        "latencyMs": 86
+      },
+      {
+        "id": "cmd-1841",
+        "timestamp": "2026-06-16 14:34:05",
+        "operator": "ops-admin",
+        "topic": "fce/robot/nova-x1/speech/say",
+        "command": "SAY",
+        "payload": "{\"lang\":\"vi\",\"text\":\"Xin mời di chuyển theo lối giữa.\"}",
+        "status": "delivered",
+        "qos": 1,
+        "latencyMs": 74
+      },
+      {
+        "id": "cmd-1840",
+        "timestamp": "2026-06-16 14:30:49",
+        "operator": "system",
+        "topic": "fce/robot/nova-x1/diagnostics/ping",
+        "command": "DIAGNOSTIC_PING",
+        "payload": "{\"includeSensors\":true,\"includeMap\":true}",
+        "status": "acknowledged",
+        "qos": 0,
+        "latencyMs": 43
+      },
+      {
+        "id": "cmd-1839",
+        "timestamp": "2026-06-16 14:22:17",
+        "operator": "ops-admin",
+        "topic": "fce/robot/nova-x1/motion/speed",
+        "command": "SET_SPEED_LIMIT",
+        "payload": "{\"maxSpeed\":\"0.8m/s\",\"zone\":\"main_corridor\"}",
+        "status": "acknowledged",
+        "qos": 1,
+        "latencyMs": 91
+      },
+      {
+        "id": "cmd-1838",
+        "timestamp": "2026-06-16 14:11:03",
+        "operator": "ops-admin",
+        "topic": "fce/robot/nova-x1/navigation/dock",
+        "command": "RETURN_TO_DOCK",
+        "payload": "{\"dock\":\"A1\",\"reason\":\"battery_check\"}",
+        "status": "rejected",
+        "qos": 1,
+        "latencyMs": 118
+      }
+    ]
+  },
   "logs": [
     {
-      "timestamp": "2024-03-20 15:30:45",
-      "event": "Dẫn đường thành công cho 15 khách tham quan",
-      "location": "Phòng Trưng Bày A"
+      "timestamp": "2026-06-16 14:38:22",
+      "event": "Nhận lệnh ROUTE_TO_ZONE qua MQTT",
+      "location": "Smart Guided Experience Lane"
     },
     {
-      "timestamp": "2024-03-20 14:15:20",
-      "event": "Trả lời 42 câu hỏi bằng 5 ngôn ngữ",
-      "location": "Lối Vào Chính"
+      "timestamp": "2026-06-16 14:34:05",
+      "event": "Phát thông báo hướng dẫn khách tham quan",
+      "location": "Hành lang trung tâm"
     },
     {
-      "timestamp": "2024-03-20 12:00:00",
-      "event": "Kiểm tra hệ thống hàng ngày hoàn tất",
-      "location": "Trạm Sạc"
+      "timestamp": "2026-06-16 14:30:49",
+      "event": "Chẩn đoán cảm biến và bản đồ hoàn tất",
+      "location": "Trạm điều phối"
     }
   ]
 }

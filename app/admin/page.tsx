@@ -2,19 +2,25 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
-import { StatCard } from '@/components/StatCard';
-import { RobotStatusPanel } from '@/components/RobotStatusPanel';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import { Bot, CalendarDays, ExternalLink, LayoutDashboard, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import analytics from '@/public/data/analytics.json';
 import robot from '@/public/data/robot.json';
 import { ExhibitionTab } from '@/components/tabs/ExhibitionTab';
 import { ScheduleTab } from '@/components/tabs/ScheduleTab';
 
+type AdminTab = 'exhibition' | 'schedule';
+
+const tabs: Array<{ id: AdminTab; label: string; icon: typeof LayoutDashboard }> = [
+  { id: 'exhibition', label: 'Điều phối triển lãm', icon: LayoutDashboard },
+  { id: 'schedule', label: 'Lịch sự kiện', icon: CalendarDays },
+];
+
 export default function AdminDashboard() {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState<'exhibition' | 'schedule'>('exhibition');
+  const [activeTab, setActiveTab] = useState<AdminTab>('exhibition');
 
   const handleLogout = () => {
     document.cookie = 'auth_token=; path=/; max-age=0';
@@ -22,77 +28,77 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-              <span className="font-bold text-primary-foreground">⚙️</span>
+    <div className="min-h-screen overflow-hidden bg-[#f3f7fb] text-slate-950">
+      <div className="pointer-events-none fixed inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.92)_0%,rgba(242,247,252,0.78)_42%,rgba(230,238,247,0.68)_100%)]" />
+      <div className="pointer-events-none fixed inset-x-0 top-0 h-56 bg-[linear-gradient(90deg,rgba(37,99,235,0.12),rgba(16,185,129,0.10),rgba(15,23,42,0.04))]" />
+
+      <header className="sticky top-0 z-40 border-b border-white/70 bg-[#f8fbff]/88 shadow-[0_18px_60px_rgba(15,23,42,0.06)] backdrop-blur-xl">
+        <div className="mx-auto flex min-h-20 max-w-[1500px] flex-col gap-4 px-4 py-4 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex min-w-0 items-center gap-3">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[1rem] bg-slate-950 text-white shadow-[0_18px_38px_rgba(15,23,42,0.18)]">
+              <Bot className="h-5 w-5" strokeWidth={1.8} />
             </div>
-            <div>
-              <h1 className="font-bold text-lg bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                Bảng Điều Khiển Quản Trị
+            <div className="min-w-0">
+              <p className="text-[11px] font-black uppercase tracking-[0.18em] text-blue-600">Future Consumer Expo</p>
+              <h1 className="truncate text-xl font-black tracking-[-0.035em] text-slate-950 sm:text-2xl">
+                Bảng điều khiển quản trị
               </h1>
-              <p className="text-xs text-foreground/60">Quản Lý Triển Lãm</p>
             </div>
           </div>
 
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="text-sm text-foreground/70 hover:text-foreground">
-              Xem Trang Công Khai
+          <div className="flex flex-wrap items-center gap-2">
+            <Link
+              href="/"
+              className="group inline-flex h-10 items-center gap-2 rounded-full border border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 shadow-[0_12px_30px_rgba(15,23,42,0.06)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:border-blue-200 hover:text-blue-700 active:translate-y-0"
+            >
+              Xem trang công khai
+              <ExternalLink className="h-4 w-4 transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.8} />
             </Link>
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               size="sm"
               onClick={handleLogout}
-              className="border-border"
+              className="h-10 rounded-full border-slate-200 bg-white px-4 text-sm font-bold text-slate-700 shadow-[0_12px_30px_rgba(15,23,42,0.06)] transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:-translate-y-0.5 hover:bg-slate-950 hover:text-white active:translate-y-0"
             >
-              Đăng Xuất
+              <LogOut className="mr-2 h-4 w-4" strokeWidth={1.8} />
+              Đăng xuất
             </Button>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        {/* Tabs Header */}
-        <div className="mb-8 flex gap-2 border-b border-border">
-          <button
-            onClick={() => setActiveTab('exhibition')}
-            className={`px-4 py-3 font-medium text-sm transition-colors border-b-2 ${
-              activeTab === 'exhibition'
-                ? 'border-primary text-primary'
-                : 'border-transparent text-foreground/70 hover:text-foreground'
-            }`}
-          >
-            Triển Lãm
-          </button>
-          <button
-            onClick={() => setActiveTab('schedule')}
-            className={`px-4 py-3 font-medium text-sm transition-colors border-b-2 ${
-              activeTab === 'schedule'
-                ? 'border-primary text-primary'
-                : 'border-transparent text-foreground/70 hover:text-foreground'
-            }`}
-          >
-            Lịch Sự Kiện
-          </button>
-        </div>
+      <main className="relative z-10 mx-auto max-w-[1500px] px-4 py-6 sm:px-6 lg:py-8">
+        <nav className="mb-6 inline-flex max-w-full gap-1 overflow-x-auto rounded-full bg-white p-1 shadow-[0_16px_42px_rgba(15,23,42,0.07)] ring-1 ring-slate-200">
+          {tabs.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
 
-        {/* Tab Content */}
-        {activeTab === 'exhibition' && (
-          <ExhibitionTab analytics={analytics} robot={robot} />
-        )}
-        {activeTab === 'schedule' && (
-          <ScheduleTab />
-        )}
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  'inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-black transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]',
+                  isActive
+                    ? 'bg-slate-950 text-white shadow-[0_12px_26px_rgba(15,23,42,0.18)]'
+                    : 'text-slate-500 hover:bg-slate-100 hover:text-slate-950',
+                )}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                <Icon className="h-4 w-4" strokeWidth={1.8} />
+                {tab.label}
+              </button>
+            );
+          })}
+        </nav>
+
+        {activeTab === 'exhibition' ? <ExhibitionTab analytics={analytics} robot={robot} /> : <ScheduleTab />}
       </main>
 
-      {/* Footer */}
-      <footer className="border-t border-border bg-gradient-to-r from-primary/5 to-accent/5 py-8 mt-12">
-        <div className="container mx-auto px-4 text-center text-foreground/70 text-sm">
-          <p>&copy; 2024 Future Tech Exhibition Admin Panel. All rights reserved.</p>
+      <footer className="relative z-10 mx-auto mt-10 max-w-[1500px] px-4 pb-8 text-xs font-semibold text-slate-400 sm:px-6">
+        <div className="border-t border-slate-200 pt-5">
+          Future Consumer Expo Admin Panel · 2026
         </div>
       </footer>
     </div>
