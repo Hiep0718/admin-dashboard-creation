@@ -183,7 +183,7 @@ function BoothCard({ booth }: { booth: Booth }) {
   );
 }
 
-const mapSignals = ['8 gian hàng', '2 robot AI', 'Live routing'];
+const mapSignals = ['8 gian hàng', 'Live routing'];
 
 export function VirtualExpo() {
   return (
