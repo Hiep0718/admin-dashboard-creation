@@ -1,5 +1,5 @@
-<svg width="180" height="70" viewBox="0 0 180 70" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vinamilk">
-  <rect width="180" height="70" rx="10" fill="#0B4FD8"/>
-  <path d="M18 22C39 9 65 10 84 22C108 37 134 39 162 25V52C134 64 108 63 84 49C62 36 40 36 18 49V22Z" fill="#FFFFFF" opacity="0.95"/>
-  <text x="90" y="43" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="900" fill="#0B4FD8">Vinamilk</text>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Vinamilk">
+  <rect width="200" height="80" rx="12" fill="#0B4FD8"/>
+  <path d="M20 25C45 11 74 12 98 27C124 43 151 43 180 29V60C151 70 123 69 98 55C72 41 45 41 20 55V25Z" fill="#FFFFFF" opacity="0.96"/>
+  <text x="100" y="51" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="900" fill="#0B4FD8">Vinamilk</text>
 </svg>

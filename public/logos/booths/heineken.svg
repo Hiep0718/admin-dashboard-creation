@@ -1,6 +1,6 @@
-<svg width="180" height="70" viewBox="0 0 180 70" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heineken">
-  <rect width="180" height="70" rx="10" fill="#FFFFFF"/>
-  <path d="M35 11L40.8 28.7H59.4L44.3 39.6L50.1 57.3L35 46.3L19.9 57.3L25.7 39.6L10.6 28.7H29.2L35 11Z" fill="#D7141A"/>
-  <text x="72" y="42" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800" fill="#007A3D">Heineken</text>
-  <path d="M72 48H160" stroke="#007A3D" stroke-width="3" stroke-linecap="round"/>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heineken">
+  <rect width="200" height="80" rx="12" fill="#FFFFFF"/>
+  <path d="M38 14L44.4 33.4H64.9L48.3 45.4L54.7 64.9L38 52.8L21.3 64.9L27.7 45.4L11.1 33.4H31.6L38 14Z" fill="#D7141A"/>
+  <text x="123" y="48" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800" fill="#007A3D">Heineken</text>
+  <path d="M76 55H171" stroke="#007A3D" stroke-width="3" stroke-linecap="round"/>
 </svg>
