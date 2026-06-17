@@ -252,6 +252,102 @@ function getActionTone(tone: string): ActionTone {
   return tone in actionTone ? (tone as ActionTone) : 'slate';
 }
 
+function clampPercent(value: number) {
+  return Math.max(0, Math.min(100, Math.round(value)));
+}
+
+function getBatteryTone(soc: number, charging: boolean) {
+  if (charging) {
+    return {
+      label: 'Đang sạc',
+      fill: 'from-sky-500 via-blue-500 to-cyan-400',
+      chip: 'border-sky-200 bg-sky-50 text-sky-700',
+      text: 'text-sky-700',
+      glow: 'shadow-[0_18px_44px_rgba(14,165,233,0.16)]',
+    };
+  }
+
+  if (soc <= 20) {
+    return {
+      label: 'Cần sạc',
+      fill: 'from-rose-500 via-red-500 to-orange-400',
+      chip: 'border-rose-200 bg-rose-50 text-rose-700',
+      text: 'text-rose-700',
+      glow: 'shadow-[0_18px_44px_rgba(244,63,94,0.16)]',
+    };
+  }
+
+  if (soc <= 45) {
+    return {
+      label: 'Theo dõi',
+      fill: 'from-amber-500 via-yellow-500 to-orange-400',
+      chip: 'border-amber-200 bg-amber-50 text-amber-700',
+      text: 'text-amber-700',
+      glow: 'shadow-[0_18px_44px_rgba(245,158,11,0.14)]',
+    };
+  }
+
+  return {
+    label: 'Ổn định',
+    fill: 'from-emerald-500 via-teal-500 to-blue-500',
+    chip: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+    text: 'text-emerald-700',
+    glow: 'shadow-[0_18px_44px_rgba(16,185,129,0.14)]',
+  };
+}
+
+function BatteryGauge({ battery }: { battery: RobotTelemetry['battery'] }) {
+  const soc = clampPercent(battery.soc);
+  const tone = getBatteryTone(soc, battery.charging);
+
+  return (
+    <div className={cn('rounded-[1.25rem] bg-white p-4 ring-1 ring-slate-200', tone.glow)}>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="text-[10px] font-black uppercase tracking-[0.16em] text-slate-400">Battery SoC</p>
+          <div className="mt-1 flex items-end gap-2">
+            <span className={cn('font-mono text-4xl font-black leading-none tabular-nums', tone.text)}>{soc}%</span>
+            <span className={cn('mb-1 rounded-full border px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em]', tone.chip)}>
+              {tone.label}
+            </span>
+          </div>
+        </div>
+        <BatteryCharging className={cn('mt-1 h-6 w-6', tone.text)} strokeWidth={1.9} />
+      </div>
+
+      <div className="mt-4 flex items-center gap-2" aria-label={`Pin robot ${soc}%`}>
+        <div className="relative h-14 flex-1 rounded-[1rem] border border-slate-300 bg-slate-100 p-1 shadow-[inset_0_2px_8px_rgba(15,23,42,0.10)]">
+          <div className="absolute inset-1 overflow-hidden rounded-[0.75rem] bg-white">
+            <div
+              className={cn('h-full rounded-[0.75rem] bg-gradient-to-r transition-[width] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]', tone.fill)}
+              style={{ width: `${soc}%` }}
+            />
+          </div>
+          <div className="absolute inset-y-2 left-1/4 w-px bg-white/55" />
+          <div className="absolute inset-y-2 left-1/2 w-px bg-white/55" />
+          <div className="absolute inset-y-2 left-3/4 w-px bg-white/55" />
+        </div>
+        <div className="h-8 w-2 rounded-r-[0.45rem] border border-l-0 border-slate-300 bg-slate-200" />
+      </div>
+
+      <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
+        <div className="rounded-[0.85rem] bg-slate-50 px-3 py-2">
+          <p className="font-black uppercase tracking-[0.12em] text-slate-400">Voltage</p>
+          <p className="mt-1 font-mono font-black text-slate-950">{battery.voltage}V</p>
+        </div>
+        <div className="rounded-[0.85rem] bg-slate-50 px-3 py-2">
+          <p className="font-black uppercase tracking-[0.12em] text-slate-400">Current</p>
+          <p className="mt-1 font-mono font-black text-slate-950">{battery.current}A</p>
+        </div>
+        <div className="rounded-[0.85rem] bg-slate-50 px-3 py-2">
+          <p className="font-black uppercase tracking-[0.12em] text-slate-400">State</p>
+          <p className="mt-1 truncate font-mono font-black text-slate-950">{battery.charging_state}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const mapZones = [
   { name: 'Coca-Cola', className: 'left-[10%] top-[12%] h-[19%] w-[12%]', tone: 'bg-red-100 text-red-700 border-red-200' },
   { name: 'Pepsi', className: 'left-[23.5%] top-[12%] h-[19%] w-[12%]', tone: 'bg-blue-100 text-blue-700 border-blue-200' },
@@ -598,16 +694,7 @@ function RobotReadiness({ robot }: { robot: RobotData }) {
         </div>
 
         <div className="mt-6 grid gap-3">
-          <div>
-            <div className="mb-2 flex items-center justify-between">
-              <span className="text-xs font-black uppercase tracking-[0.14em] text-slate-400">Battery SoC</span>
-              <span className="font-mono text-sm font-black text-slate-950">{battery.soc}%</span>
-            </div>
-            <div className="h-2 overflow-hidden rounded-full bg-slate-100">
-              <div className="h-full rounded-full bg-gradient-to-r from-emerald-500 to-blue-500" style={{ width: `${battery.soc}%` }} />
-            </div>
-            <p className="mt-2 text-xs font-semibold text-slate-500">{battery.voltage}V · {battery.charging_state} · robot/battery/status</p>
-          </div>
+          <BatteryGauge battery={battery} />
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-[1rem] bg-slate-50 p-3">
               <Zap className="h-4 w-4 text-slate-400" strokeWidth={1.8} />
