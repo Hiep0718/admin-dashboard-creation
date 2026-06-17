@@ -1,0 +1,20 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Red Bull exhibition booth">
+  <rect width="1200" height="820" fill="#071A44"/>
+  <path d="M0 0H1200V820H0V0Z" fill="url(#bg)"/>
+  <path d="M130 610H1070L990 710H210L130 610Z" fill="#0B2458"/>
+  <path d="M230 220H970L1030 610H170L230 220Z" fill="#123B8E"/>
+  <path d="M270 270H930V540H270V270Z" fill="#F7D51D"/>
+  <circle cx="600" cy="405" r="150" fill="#F6D21B"/>
+  <path d="M250 442C365 290 498 320 603 398C472 410 376 445 250 442Z" fill="#DB1F2A"/>
+  <path d="M950 442C835 290 702 320 597 398C728 410 824 445 950 442Z" fill="#DB1F2A"/>
+  <text x="600" y="176" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="96" font-weight="900" fill="#FFFFFF">RED BULL</text>
+  <text x="600" y="594" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#FFFFFF">AI ENERGY EXPERIENCE</text>
+  <rect x="320" y="650" width="560" height="26" rx="13" fill="#F7D51D"/>
+  <defs>
+    <linearGradient id="bg" x1="150" y1="40" x2="990" y2="780" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#174AAE"/>
+      <stop offset="0.48" stop-color="#0B2C76"/>
+      <stop offset="1" stop-color="#06132D"/>
+    </linearGradient>
+  </defs>
+</svg>

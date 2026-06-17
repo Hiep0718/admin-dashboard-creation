@@ -1,0 +1,7 @@
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nestlé">
+  <rect width="200" height="80" rx="12" fill="#FFFFFF"/>
+  <path d="M34 48C42 28 60 22 80 30C70 34 63 41 58 53C50 48 42 46 34 48Z" fill="#C8102E"/>
+  <path d="M55 28C64 17 78 17 90 25C77 26 68 32 63 43C61 37 58 32 55 28Z" fill="#C8102E" opacity="0.78"/>
+  <path d="M31 55C48 62 70 62 90 54" stroke="#C8102E" stroke-width="4" stroke-linecap="round"/>
+  <text x="137" y="51" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="31" font-weight="900" fill="#C8102E">Nestlé</text>
+</svg>

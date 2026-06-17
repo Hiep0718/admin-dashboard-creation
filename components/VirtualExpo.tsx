@@ -44,6 +44,18 @@ const booths: Booth[] = [
   },
   {
     id: '03',
+    name: 'Red Bull Energy Lab',
+    brand: 'Red Bull',
+    desc: 'Công nghệ marketing thông minh và vending machine AI.',
+    logo: '/logos/booths/redbull.svg',
+    accent: '#f5c400',
+    deep: '#0d2f72',
+    image: '/images/booths/redbull.svg',
+    className: 'left-[554px] top-[12px] h-[146px] w-[194px]',
+    variant: 'top',
+  },
+  {
+    id: '04',
     name: 'Heineken Future Brewing',
     brand: 'Heineken',
     desc: 'Công nghệ ủ bia bền vững và thông minh.',
@@ -51,11 +63,11 @@ const booths: Booth[] = [
     accent: '#0b8c45',
     deep: '#05321e',
     image: '/images/booths/heineken.webp',
-    className: 'left-[554px] top-[12px] h-[146px] w-[194px]',
+    className: 'left-[756px] top-[12px] h-[146px] w-[194px]',
     variant: 'top',
   },
   {
-    id: '04',
+    id: '05',
     name: 'Tiger Smart Distribution',
     brand: 'Tiger',
     desc: 'Logistics thông minh, tối ưu chuỗi cung ứng.',
@@ -63,11 +75,11 @@ const booths: Booth[] = [
     accent: '#d88211',
     deep: '#092b54',
     image: '/images/booths/tiger.webp',
-    className: 'left-[756px] top-[12px] h-[146px] w-[194px]',
+    className: 'left-[958px] top-[12px] h-[146px] w-[194px]',
     variant: 'top',
   },
   {
-    id: '05',
+    id: '06',
     name: 'Sabeco Industry Pavilion',
     brand: 'Sabeco',
     desc: 'Đổi mới ngành đồ uống Việt Nam với công nghệ.',
@@ -75,11 +87,11 @@ const booths: Booth[] = [
     accent: '#b88405',
     deep: '#102139',
     image: '/images/booths/sabeco.webp',
-    className: 'left-[958px] top-[12px] h-[146px] w-[194px]',
+    className: 'left-[1160px] top-[12px] h-[146px] w-[194px]',
     variant: 'top',
   },
   {
-    id: '06',
+    id: '07',
     name: 'Abbott Healthcare Innovation',
     brand: 'Abbott',
     desc: 'Giải pháp chăm sóc sức khỏe tiên tiến.',
@@ -87,11 +99,11 @@ const booths: Booth[] = [
     accent: '#159bd3',
     deep: '#075985',
     image: '/images/booths/abbott.webp',
-    className: 'left-[244px] top-[224px] h-[122px] w-[220px]',
+    className: 'left-[190px] top-[224px] h-[122px] w-[270px]',
     variant: 'bottom',
   },
   {
-    id: '07',
+    id: '08',
     name: 'Nutifood Nutrition Tech Lab',
     brand: 'Nutifood',
     desc: 'Dinh dưỡng cá nhân hóa dựa trên dữ liệu sức khỏe.',
@@ -99,11 +111,23 @@ const booths: Booth[] = [
     accent: '#0c9b61',
     deep: '#065f46',
     image: '/images/booths/nutifood.webp',
-    className: 'left-[480px] top-[224px] h-[122px] w-[220px]',
+    className: 'left-[484px] top-[224px] h-[122px] w-[270px]',
     variant: 'bottom',
   },
   {
-    id: '08',
+    id: '09',
+    name: 'Nestlé Smart Food Innovation',
+    brand: 'Nestlé',
+    desc: 'Sản xuất thực phẩm thông minh và kiểm định bằng AI.',
+    logo: '/logos/booths/nestle.svg',
+    accent: '#e1251b',
+    deep: '#5f1713',
+    image: '/images/booths/nestle.svg',
+    className: 'left-[778px] top-[224px] h-[122px] w-[270px]',
+    variant: 'bottom',
+  },
+  {
+    id: '10',
     name: 'Vinamilk DairyTech Future Zone',
     brand: 'Vinamilk',
     desc: 'Công nghệ sản xuất sữa thông minh thế hệ mới.',
@@ -111,7 +135,7 @@ const booths: Booth[] = [
     accent: '#1655d9',
     deep: '#11356f',
     image: '/images/booths/vinamilk.webp',
-    className: 'left-[716px] top-[224px] h-[122px] w-[220px]',
+    className: 'left-[1072px] top-[224px] h-[122px] w-[270px]',
     variant: 'bottom',
   },
 ];
@@ -183,12 +207,12 @@ function BoothCard({ booth }: { booth: Booth }) {
   );
 }
 
-const mapSignals = ['8 gian hàng', 'Live routing'];
+const mapSignals = ['10 gian hàng', 'Live routing'];
 
 export function VirtualExpo() {
   return (
     <section id="trien-lam" className="expo-map-section relative overflow-hidden pb-8 pt-20 sm:pt-24">
-      <div className="mx-auto max-w-[1400px] px-3 sm:px-6">
+      <div className="mx-auto max-w-[1460px] px-3 sm:px-6">
         <div data-reveal className="expo-map-intro mb-2 flex flex-col gap-2 px-1 sm:mb-3 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-[11px] font-black uppercase tracking-[0.22em] text-blue-600">Future Consumer Expo</p>
@@ -205,7 +229,7 @@ export function VirtualExpo() {
           </div>
         </div>
         <div className="overflow-x-auto border border-slate-200 bg-white p-1 shadow-[0_22px_54px_rgba(15,23,42,0.14)]">
-          <div data-reveal style={{ '--reveal-delay': '90ms' } as CSSProperties} className="expo-map-canvas relative h-[360px] min-w-[1180px] overflow-hidden">
+          <div data-reveal style={{ '--reveal-delay': '90ms' } as CSSProperties} className="expo-map-canvas relative h-[360px] min-w-[1360px] overflow-hidden">
             <div className="absolute left-4 top-4 z-[3]">
               <h2 className="text-sm font-black uppercase tracking-[0.02em] text-white">Sơ đồ triển lãm</h2>
               <p className="mt-2 text-[10px] font-medium text-slate-400">Click vào gian hàng để khám phá.</p>
@@ -235,9 +259,6 @@ export function VirtualExpo() {
                 <span>Hệ thống dẫn đường tự động đang hoạt động</span>
               </div>
             </div>
-
-            <div className="expo-map-plant absolute left-[132px] top-[232px]" />
-            <div className="expo-map-plant absolute right-[44px] top-[236px]" />
           </div>
         </div>
       </div>

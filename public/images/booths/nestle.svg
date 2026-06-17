@@ -1,0 +1,19 @@
+<svg width="1200" height="820" viewBox="0 0 1200 820" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nestlé exhibition booth">
+  <rect width="1200" height="820" fill="#FFF5F1"/>
+  <path d="M0 0H1200V820H0V0Z" fill="url(#bg)"/>
+  <path d="M130 616H1070L990 716H210L130 616Z" fill="#7F1D1D" opacity="0.92"/>
+  <path d="M220 218H980L1030 616H170L220 218Z" fill="#B91C1C"/>
+  <path d="M280 288H920V540H280V288Z" fill="#FFFFFF"/>
+  <path d="M382 468C455 292 613 244 790 314C698 346 633 414 591 555C520 492 455 456 382 468Z" fill="#C8102E"/>
+  <path d="M558 292C637 182 763 184 870 265C755 272 677 330 633 448C612 381 585 329 558 292Z" fill="#C8102E" opacity="0.78"/>
+  <path d="M360 584C510 646 704 644 882 578" stroke="#C8102E" stroke-width="22" stroke-linecap="round"/>
+  <text x="600" y="178" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="98" font-weight="900" fill="#FFFFFF">Nestlé</text>
+  <text x="600" y="674" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" fill="#FFFFFF">SMART FOOD INNOVATION</text>
+  <defs>
+    <linearGradient id="bg" x1="220" y1="60" x2="1000" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FEE2E2"/>
+      <stop offset="0.42" stop-color="#DC2626"/>
+      <stop offset="1" stop-color="#7F1D1D"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -49,6 +49,20 @@ const booths: HighlightBooth[] = [
   },
   {
     id: '03',
+    brand: 'Red Bull',
+    title: 'Red Bull Energy Lab',
+    image: '/images/booths/redbull.svg',
+    accent: '#f5c400',
+    overview:
+      'Red Bull là thương hiệu nước tăng lực nổi tiếng toàn cầu, được biết đến với hình ảnh năng động, sáng tạo và gắn liền với thể thao mạo hiểm, tốc độ và phong cách sống hiện đại.',
+    history: ['Thành lập năm 1987', 'Người sáng lập: Dietrich Mateschitz và Chaleo Yoovidhya', 'Trụ sở chính: Fuschl am See, Áo'],
+    products: ['Red Bull Energy Drink Original', 'Red Bull Sugarfree', 'Red Bull Zero', 'Red Bull Energy Drink Tropical Edition', 'Red Bull Energy Drink Watermelon Edition'],
+    markets: ['Phân phối tại hơn 170 quốc gia', 'Một trong những thương hiệu nước tăng lực lớn nhất thế giới', 'Doanh số hàng năm đạt hàng tỷ lon trên toàn cầu'],
+    achievements: ['Dẫn đầu thị trường nước tăng lực toàn cầu', 'Xây dựng hệ sinh thái thương hiệu gắn liền với thể thao và giải trí quốc tế', 'Tài trợ nhiều sự kiện thể thao hàng đầu thế giới như Formula 1, MotoGP và extreme sports'],
+    technologies: ['Hệ thống phân tích hành vi tiêu dùng bằng AI', 'Công nghệ marketing thông minh cá nhân hóa trải nghiệm khách hàng', 'Giải pháp quản lý chuỗi cung ứng tốc độ cao trong ngành FMCG'],
+  },
+  {
+    id: '04',
     brand: 'Heineken',
     title: 'Heineken Future Brewing',
     image: '/images/booths/heineken.webp',
@@ -61,7 +75,7 @@ const booths: HighlightBooth[] = [
     technologies: ['Hệ thống sản xuất bia tự động hóa thông minh', 'Công nghệ giám sát và kiểm định chất lượng bằng AI', 'Giải pháp tối ưu năng lượng và giảm phát thải trong sản xuất công nghiệp'],
   },
   {
-    id: '04',
+    id: '05',
     brand: 'Tiger',
     title: 'Tiger Smart Distribution',
     image: '/images/booths/tiger.webp',
@@ -74,7 +88,7 @@ const booths: HighlightBooth[] = [
     technologies: ['Hệ thống quản lý chuỗi cung ứng thông minh', 'Công nghệ dự đoán nhu cầu thị trường và tối ưu tồn kho', 'Giải pháp tự động hóa logistics và quản lý phân phối sản phẩm'],
   },
   {
-    id: '05',
+    id: '06',
     brand: 'Sabeco',
     title: 'Sabeco Industry Pavilion',
     image: '/images/booths/sabeco.webp',
@@ -87,7 +101,7 @@ const booths: HighlightBooth[] = [
     technologies: ['Dây chuyền sản xuất ứng dụng công nghệ Industry 4.0', 'Hệ thống tự động hóa toàn bộ quy trình sản xuất đồ uống', 'Nền tảng giám sát dữ liệu sản xuất theo thời gian thực'],
   },
   {
-    id: '06',
+    id: '07',
     brand: 'Abbott',
     title: 'Abbott Healthcare Innovation',
     image: '/images/booths/abbott.webp',
@@ -100,7 +114,7 @@ const booths: HighlightBooth[] = [
     technologies: ['Thiết bị theo dõi sức khỏe tích hợp cảm biến thông minh', 'Công nghệ phân tích dữ liệu y tế hỗ trợ chẩn đoán nhanh', 'Hệ thống chăm sóc sức khỏe cá nhân hóa ứng dụng trí tuệ nhân tạo'],
   },
   {
-    id: '07',
+    id: '08',
     brand: 'Nutifood',
     title: 'Nutifood Nutrition Tech Lab',
     image: '/images/booths/nutifood.webp',
@@ -113,7 +127,21 @@ const booths: HighlightBooth[] = [
     technologies: ['Hệ thống phân tích dữ liệu dinh dưỡng cá nhân', 'Công nghệ đề xuất chế độ ăn uống tối ưu bằng AI', 'Nền tảng nghiên cứu và xây dựng giải pháp dinh dưỡng thông minh'],
   },
   {
-    id: '08',
+    id: '09',
+    brand: 'Nestlé',
+    title: 'Nestlé Smart Food Innovation',
+    image: '/images/booths/nestle.svg',
+    accent: '#e1251b',
+    overview:
+      'Nestlé là tập đoàn thực phẩm và đồ uống lớn nhất thế giới, hoạt động trong nhiều lĩnh vực từ dinh dưỡng trẻ em, cà phê, thực phẩm chế biến đến chăm sóc sức khỏe và dinh dưỡng chuyên sâu.',
+    history: ['Thành lập năm 1866', 'Người sáng lập: Henri Nestlé', 'Trụ sở chính: Vevey, Thụy Sĩ'],
+    products: ['Nescafé', 'Milo', 'KitKat', 'Maggi', 'Nestlé Pure Life', 'Cerelac', 'NAN Infant Formula'],
+    markets: ['Có mặt tại hơn 180 quốc gia', 'Hệ thống nhà máy và trung tâm nghiên cứu trải rộng toàn cầu', 'Một trong những tập đoàn thực phẩm lớn nhất thế giới'],
+    achievements: ['Dẫn đầu ngành thực phẩm và dinh dưỡng toàn cầu', 'Sở hữu hàng trăm thương hiệu được tiêu dùng rộng rãi trên thế giới', 'Tiên phong nghiên cứu dinh dưỡng và phát triển thực phẩm bền vững'],
+    technologies: ['Công nghệ sản xuất thực phẩm thông minh ứng dụng tự động hóa', 'Hệ thống kiểm định chất lượng sản phẩm bằng AI', 'Giải pháp phân tích dữ liệu dinh dưỡng và phát triển sản phẩm thế hệ mới'],
+  },
+  {
+    id: '10',
     brand: 'Vinamilk',
     title: 'Vinamilk DairyTech Future Zone',
     image: '/images/booths/vinamilk.webp',
