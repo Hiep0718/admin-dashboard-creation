@@ -21,11 +21,39 @@ npm run bot:test  # Run unit tests
 
 ## 🚀 Next Steps (To Do)
 
+### Phase 1: Clone & Setup (Team Task) ✅ READY NOW
+**Anyone can do this:**
+
+```bash
+# 1. Clone repo
+git clone https://github.com/Hiep0718/admin-dashboard-creation.git
+cd admin-dashboard-creation
+
+# 2. Install dependencies
+npm install
+
+# 3. Already have .env? Great! If not, copy template:
+cp .env.example .env
+
+# 4. Run mock bot immediately
+npm run bot:mock
+```
+
+**Expected output:**
+```
+🤖 Starting bot...
+...
+⚠️  [warning] Robot battery low
+🔴 [critical] Robot battery critical
+🔴 [critical] Robot command FAILED
+✅ Demo completed!
+```
+
 ### Phase 1: Local Testing (Your Task)
-- [ ] Run `npm run bot:mock` to test bot locally
-- [ ] Verify Telegram alerts working correctly
+- [x] ✅ Bot mock working locally
+- [x] ✅ All 7 demo scenarios trigger alerts
+- [ ] Verify Telegram alerts working correctly (if real token/chat)
 - [ ] Check `/status`, `/alerts`, `/ack` commands in Telegram
-- [ ] Confirm all 7 demo scenarios trigger alerts
 
 ### Phase 2: Real MQTT Connection
 - [ ] Add real `MQTT_USERNAME` and `MQTT_PASSWORD` to `.env`
@@ -33,6 +61,9 @@ npm run bot:test  # Run unit tests
 - [ ] Verify bot subscribes to all 7 topics
 - [ ] Test with `mosquitto_pub` to trigger real alerts
 
+**When:** After getting real MQTT credentials from FCE
+
+### Phase 3: Bot Deployment (Server)
 ### Phase 3: Bot Deployment (Server)
 - [ ] Choose deployment option:
   - **Option A**: PM2 on VPS/Server (Recommended)
@@ -48,6 +79,8 @@ npm run bot:test  # Run unit tests
   pm2 startup
   ```
 
+**When:** When ready to go production
+
 ### Phase 4: Integration
 - [ ] Dashboard stays on Vercel (no changes needed)
 - [ ] Bot runs independently on server
@@ -56,7 +89,81 @@ npm run bot:test  # Run unit tests
 
 ---
 
-## 📋 Repository Structure
+## 📋 Work Distribution
+
+### Solo Work (Can do independently):
+| Task | Who | When |
+|------|-----|------|
+| ✅ Clone & test mock bot | **Anyone** | NOW |
+| Get MQTT credentials | **FCE/Admin** | ASAP |
+| Add real MQTT to .env | **Anyone** | After getting creds |
+| Test real MQTT | **Dev** | After adding creds |
+| Deploy bot on server | **DevOps/Dev** | When ready |
+
+### What's Already Done:
+```
+✅ Mock bot works (no MQTT needed)
+✅ All alert types tested
+✅ Error handling implemented
+✅ Code on GitHub main branch
+✅ Ready for team to clone & run
+```
+
+---
+
+## 🎯 Current Status
+
+| Component | Status | Next |
+|-----------|--------|------|
+| 📦 Mock Bot | ✅ Working | Test on your machine |
+| 🔌 Real MQTT | ⏳ Pending | Get credentials |
+| 🚀 Deployment | ⏳ Not started | Choose platform |
+| 📱 Dashboard | ✅ On Vercel | No changes |
+
+---
+
+
+
+## � For Team Members - Quick Start Guide
+
+### You just got this repo? Do this:
+
+```bash
+# Step 1: Clone (if you don't have it yet)
+git clone https://github.com/Hiep0718/admin-dashboard-creation.git
+cd admin-dashboard-creation
+
+# Step 2: Install packages
+npm install
+
+# Step 3: Copy .env template (or ask for real .env)
+# If you have real MQTT credentials:
+#   - Edit .env with real MQTT_USERNAME & MQTT_PASSWORD
+# If you don't have real credentials yet:
+#   - Just use .env as-is (has mock setup)
+cp .env.example .env
+
+# Step 4: Test bot immediately (no real MQTT needed!)
+npm run bot:mock
+```
+
+### What happens when you run `npm run bot:mock`:
+✅ Bot starts
+✅ 7 demo alert scenarios run automatically
+✅ You see output like:
+```
+⚠️  [warning] Robot battery low
+🔴 [critical] Robot battery critical
+🔴 [critical] Robot command FAILED
+🔴 [critical] Graceful shutdown requested
+🔴 [critical] MQTT broker disconnected
+```
+
+### That's it! Bot works 🎉
+
+---
+
+
 
 ```
 services/robot-alert-bot/
@@ -214,39 +321,16 @@ pm2 start ...          # Deploy bot on server
 
 ---
 
-## 🎓 Next Session Todo
-
-1. **Test Mock Bot**
-   ```bash
-   npm run bot:mock
-   ```
-
-2. **Get Real MQTT Credentials**
-   - MQTT_USERNAME
-   - MQTT_PASSWORD
-
-3. **Update .env with Real Credentials**
-   ```ini
-   MQTT_USERNAME=your_username
-   MQTT_PASSWORD=your_password
-   ```
-
-4. **Test Real Connection**
-   ```bash
-   npm run bot:start
-   ```
-
-5. **Deploy Bot on Server**
-   - Choose: PM2 / Docker / VPS
-   - Run bot continuously
-   - Keep dashboard on Vercel
-
----
-
 **Ready to test?** 🚀
 
 ```bash
+# Get repo from GitHub
+git clone https://github.com/Hiep0718/admin-dashboard-creation.git
+cd admin-dashboard-creation
+npm install
+
+# Run bot immediately
 npm run bot:mock
 ```
 
-Check your Telegram for alerts! 🎉
+**That's all!** Bot demos 7 scenarios automatically. 🎉
