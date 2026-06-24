@@ -103,22 +103,52 @@ bot.command('ack', (ctx) => {
 
 // Helper: Dispatch notifications to Telegram
 async function dispatchNotifications(notifications) {
-  for (const notification of notifications) {
-    const emoji = notification.severity === 'critical' ? '🔴' : '⚠️ ';
-    console.log(`${emoji} [${notification.severity}] ${notification.title}`);
-    for (const chatId of config.telegramChatIds) {
-      try {
-        await bot.telegram.sendMessage(chatId, formatNotification(notification));
-      } catch (error) {
-        console.error(`  ❌ failed to send to ${chatId}: ${error.message}`);
+  if (!Array.isArray(notifications) || notifications.length === 0) {
+    return;
+  }
+  
+  for (const item of notifications) {
+    if (!item || !item.alert) continue;
+    
+    const alert = item.alert;
+    const severity = alert.severity || 'info';
+    const emoji = severity === 'critical' ? '🔴' : severity === 'warning' ? '⚠️ ' : 'ℹ️ ';
+    console.log(`${emoji} [${severity}] ${alert.title}`);
+    
+    // Try to send via Telegram if bot is ready
+    if (bot.telegram) {
+      for (const chatId of config.telegramChatIds) {
+        try {
+          await bot.telegram.sendMessage(chatId, formatNotification(item));
+        } catch (error) {
+          // Silently ignore Telegram errors in mock mode
+        }
       }
     }
   }
 }
 
-// Start bot
-await bot.launch();
-console.log('🤖 [telegram] bot started (mock mode)\n');
+// Start bot with timeout
+console.log('🤖 Starting bot...');
+console.log('   Initializing Telegraf instance...');
+try {
+  // Set a timeout for bot launch (10s)
+  console.log('   Calling bot.launch()...');
+  const launchPromise = bot.launch();
+  console.log('   Promise created, waiting for resolution...');
+  
+  const timeoutPromise = new Promise((_, reject) => 
+    setTimeout(() => reject(new Error('Bot launch timeout after 10s')), 10000)
+  );
+  
+  await Promise.race([launchPromise, timeoutPromise]);
+  console.log('🤖 [telegram] bot started (mock mode)\n');
+} catch (error) {
+  console.error('❌ Failed to start bot:', error.message);
+  console.error('   (This is expected if network is slow)');
+  console.error('   Continuing with mock mode anyway...\n');
+}
+
 console.log(`📡 [mqtt] MOCK MODE - connected (simulated)`);
 console.log(`   Robot: ${config.robotId}`);
 console.log(`   MQTT URL: ${config.mqttUrl}\n`);
