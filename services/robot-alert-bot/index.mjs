@@ -1,7 +1,10 @@
+import { existsSync, readFileSync } from 'node:fs';
 import mqtt from 'mqtt';
 import { Telegraf } from 'telegraf';
 import { AlertRuleEngine, MQTT_TOPICS } from './rule-engine.mjs';
 import { formatAlertList, formatHelp, formatNotification, formatStatus } from './formatters.mjs';
+
+loadEnvFile(process.env.ROBOT_ALERT_ENV_FILE || '.env');
 
 const config = readConfig();
 const engine = new AlertRuleEngine({
@@ -145,6 +148,45 @@ function readConfig() {
     batteryLowSoc: readNumberEnv('BATTERY_LOW_SOC', 20),
     batteryCriticalSoc: readNumberEnv('BATTERY_CRITICAL_SOC', 10),
   };
+}
+
+function loadEnvFile(filePath) {
+  if (!existsSync(filePath)) {
+    return;
+  }
+
+  const content = readFileSync(filePath, 'utf8');
+
+  for (const line of content.split(/\r?\n/)) {
+    const trimmed = line.trim();
+
+    if (!trimmed || trimmed.startsWith('#')) {
+      continue;
+    }
+
+    const match = /^(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)=(.*)$/.exec(trimmed);
+    if (!match) {
+      continue;
+    }
+
+    const [, key, rawValue] = match;
+    if (process.env[key] !== undefined) {
+      continue;
+    }
+
+    process.env[key] = unwrapEnvValue(rawValue.trim());
+  }
+}
+
+function unwrapEnvValue(value) {
+  if (
+    (value.startsWith('"') && value.endsWith('"')) ||
+    (value.startsWith("'") && value.endsWith("'"))
+  ) {
+    return value.slice(1, -1);
+  }
+
+  return value;
 }
 
 function readRequiredEnv(name) {
