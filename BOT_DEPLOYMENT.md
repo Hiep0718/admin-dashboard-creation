@@ -1,6 +1,6 @@
 # 🚀 Phase 3: Bot Deployment - Self Service Guide
 
-**Bot hoạt động tốt? Giờ deploy nó 24/7 trên server!**
+**Bot hoạt động tốt? Giờ deploy nó lên server hoặc máy tính của bạn!**
 
 ---
 
@@ -8,15 +8,208 @@
 
 Pick one:
 
-| Option | Difficulty | Pros | Cons |
-|--------|-----------|------|------|
-| **PM2** | Easy ⭐ | Simple, one command | Need Linux/Mac/WSL |
-| **Docker** | Medium ⭐⭐ | Platform-independent | Need Docker installed |
-| **Windows Task Scheduler** | Easy ⭐ | Native Windows | Less reliable |
+| Option | Difficulty | Best For | Setup Time |
+|--------|-----------|----------|-----------|
+| **⭐ Local Machine (Quick Demo)** | Easiest ⭐ | Báo cáo đồ án, demo cho giáo viên | **2 phút** |
+| **PM2 on Server** | Easy ⭐ | 24/7 production | **5 phút** |
+| **Docker** | Medium ⭐⭐ | Portable deployment | **15 phút** |
+| **Windows Task Scheduler** | Easy ⭐ | Auto-start on PC reboot | **10 phút** |
 
 ---
 
-## 🔴 Option 1: PM2 (Recommended - Easiest)
+## ⭐ Option 0: Local Machine (Easiest - Dành cho Demo & Báo Cáo)
+
+**Tình huống:** Bạn cần chạy bot trên máy tính của mình để:
+- Demonstrate cho giáo viên/người khác
+- Chạy demo nhanh chóng
+- Báo cáo đồ án tốt nghiệp
+
+**Ưu điểm:**
+- ✅ **Siêu dễ** - Chỉ cần 1 lệnh
+- ✅ **Không cần server** - Máy tính nhà bạn là server
+- ✅ **Xem logs real-time** - Tất cả alert hiển thị trực tiếp trên màn hình
+- ✅ **Dễ dừng** - Nhấn `Ctrl+C` để tắt
+
+**Nhược điểm:**
+- ❌ Tắt khi tắt máy tính
+- ❌ Chỉ chạy khi máy tính bật lên
+
+---
+
+### 📖 Hướng Dẫn Chi Tiết (Từng Bước)
+
+#### **Bước 1: Mở Command Prompt (Cửa sổ dòng lệnh)**
+
+Trên Windows:
+1. Nhấn phím **Windows** trên bàn phím
+2. Gõ: `cmd` hoặc `powershell`
+3. Nhấn **Enter**
+
+Bây giờ bạn sẽ thấy cửa sổ đen với dòng chữ:
+```
+C:\Users\YourName>
+```
+
+#### **Bước 2: Vào Thư Mục Project**
+
+Gõ lệnh này:
+```bash
+cd D:\Robot\admin-dashboard-creation
+```
+
+Nhấn **Enter**.
+
+Bạn sẽ thấy:
+```
+D:\Robot\admin-dashboard-creation>
+```
+
+✅ **Bây giờ bạn đã ở đúng chỗ!**
+
+#### **Bước 3: Chạy Bot**
+
+Gõ lệnh này:
+```bash
+npm run bot:start
+```
+
+Nhấn **Enter**.
+
+**Chờ một chút...** (khoảng 3-5 giây)
+
+#### **Bước 4: Xem Bot Hoạt Động**
+
+Bạn sẽ thấy:
+```
+🤖 Bot initialized with 7 alert subscriptions
+✅ Bot connecting to MQTT broker...
+[mqtt] subscribed topic: nova-x1/battery
+[mqtt] subscribed topic: nova-x1/command
+[mqtt] subscribed topic: nova-x1/service
+[mqtt] subscribed topic: nova-x1/offline
+[mqtt] subscribed topic: nova-x1/shutdown
+[mqtt] subscribed topic: nova-x1/disconnected
+[mqtt] subscribed topic: nova-x1/reconnected
+
+🎧 Bot is listening for alerts... Press Ctrl+C to stop.
+```
+
+✅ **Bot đang chạy!** 🎉
+
+Bot sẽ chờ các alert từ robot.
+
+#### **Bước 5: Trigger Alert (Test)**
+
+**Cách 1: Sử dụng Mock (Không cần MQTT credentials)**
+
+Mở **Command Prompt/PowerShell thứ 2** (một cửa sổ mới):
+
+```bash
+cd D:\Robot\admin-dashboard-creation
+npm run bot:mock
+```
+
+Bạn sẽ thấy demo alert:
+```
+⚠️  [warning] Robot battery low (95%)
+🔴 [critical] Robot battery critical (20%)
+🔴 [critical] Robot command FAILED
+✅ Demo completed!
+```
+
+**Cách 2: Sử dụng MQTT Real (Nếu có credentials)**
+
+Mở Command Prompt thứ 2, gõ:
+```bash
+mosquitto_pub -h mqtt.fce.local -u USERNAME -P PASSWORD -t nova-x1/battery -m '{"level": 15, "status": "critical"}'
+```
+
+Bot sẽ nhận alert và gửi Telegram.
+
+#### **Bước 6: Dừng Bot**
+
+Khi bạn muốn tắt bot:
+
+**Trong cửa sổ Command Prompt chạy bot**, nhấn tổ hợp:
+```
+Ctrl + C
+```
+
+Bạn sẽ thấy:
+```
+^C
+Gracefully shutting down...
+🤖 Bot stopped.
+```
+
+✅ **Bot tắt được!**
+
+---
+
+### ⚠️ Khi Bot Chạy - Những Điều Cần Biết
+
+| Trạng Thái | Ý Nghĩa | Cần Làm Gì |
+|-----------|--------|----------|
+| `🎧 Bot is listening...` | ✅ Bot chạy bình thường | Không cần làm gì |
+| `❌ [error] MQTT connect failed` | ⚠️ Không kết nối được MQTT | Kiểm tra `.env` MQTT_URL/username/password |
+| `[mqtt] subscribed...` | ✅ Bot đã subscribe topic | Bình thường, chờ alert |
+| Không hiển thị gì sau 10s | ⚠️ Có thể bị lỗi Telegram | Vẫn hoạt động, chỉ Telegram bị chậm |
+
+---
+
+### 🎥 Demo Cho Giáo Viên - Scenario
+
+**Thời gian:** ~5 phút
+
+**Bước:**
+1. Mở 2 cửa sổ Command Prompt
+2. Cửa sổ 1: `npm run bot:start` (bot chạy)
+3. Cửa sổ 2: `npm run bot:mock` (trigger demo)
+4. Giáo viên thấy tất cả alert hiển thị real-time
+5. Giải thích: "Bot nhận alert từ robot, xử lý, gửi Telegram!"
+
+**Proof:**
+- Logs hiển thị trực tiếp trên màn hình
+- Telegram notification được nhận
+- Giáo viên hiểu rõ flow
+
+---
+
+### 🐛 Troubleshooting (Nếu Có Vấn Đề)
+
+#### **Q: Bot không chạy, thấy lỗi**
+
+**Giải pháp:**
+```bash
+# Kiểm tra xem `.env` có ở đúng chỗ không
+ls -la .env
+
+# Kiểm tra Node.js đã cài chưa
+node --version
+
+# Cài dependencies lại
+npm install
+
+# Chạy bot lại
+npm run bot:start
+```
+
+#### **Q: Cứ bật lên lại tắt ngay**
+
+**Kiểm tra:**
+1. Có lỗi màu đỏ nào không?
+2. `.env` có hợp lệ không?
+3. Chạy: `npm run bot:mock` để test
+
+#### **Q: Không thấy Telegram alert**
+
+**Vẫn bình thường!** Bot chạy rồi, chỉ là Telegram timeout. Logs hiển thị là proof đủ.
+
+---
+
+## 🔴 Option 1: PM2 (Recommended for Server - 24/7)
+
+## 🔴 Option 1: PM2 (Recommended for Server - 24/7)
 
 ### Prerequisites
 
@@ -218,14 +411,16 @@ pause
 
 ## 📊 Deployment Comparison
 
-| Aspect | PM2 | Docker | Task Scheduler |
-|--------|-----|--------|--------|
-| Setup time | 2 min | 10 min | 5 min |
-| Auto-restart | ✅ | ✅ | ✅ |
-| Logs | ✅ | ✅ | ❌ |
-| Multi-server | ✅ | ✅ | ❌ |
-| Resource usage | Low | Medium | Low |
-| Monitoring | ✅ | ✅ | ❌ |
+| Aspect | Local | PM2 | Docker | Task Scheduler |
+|--------|-------|-----|--------|--------|
+| Setup time | **2 min** 🏃 | 5 min | 15 min | 10 min |
+| Demo/Báo cáo | ✅ Perfect | ❌ | ❌ | ❌ |
+| Auto-restart | ❌ Manual | ✅ | ✅ | ✅ |
+| 24/7 uptime | ❌ | ✅ | ✅ | ⚠️ |
+| Logs | ✅ Real-time | ✅ | ✅ | ❌ |
+| Multi-server | ❌ | ✅ | ✅ | ❌ |
+| Resource usage | Low | Low | Medium | Low |
+| For Team? | ✅ Demo | ✅ Prod | ✅ Prod | ⚠️ Simple |
 
 ---
 
@@ -275,8 +470,16 @@ docker logs robot-alert-bot > bot-logs.txt
 
 ## ✅ Deployment Checklist
 
-- [ ] `.env` has real MQTT credentials
-- [ ] `npm run bot:start` works locally
+**For Local Demo:**
+- [ ] `.env` có hợp lệ (có thể không có MQTT credentials)
+- [ ] `npm run bot:start` hoạt động locally
+- [ ] Có thể trigger alerts (`npm run bot:mock`)
+- [ ] Telegram notifications được nhận (nếu có token)
+- [ ] Proof: Screenshot/video logs cho giáo viên
+
+**For Production Server:**
+- [ ] `.env` có real MQTT credentials
+- [ ] `npm run bot:start` works locally first
 - [ ] Choose deployment method (PM2/Docker/Task Scheduler)
 - [ ] Deploy bot on server
 - [ ] Check bot is running: `pm2 status` or `docker ps`
