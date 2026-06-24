@@ -61,23 +61,16 @@ npm run bot:mock
 - [ ] Verify bot subscribes to all 7 topics
 - [ ] Test with `mosquitto_pub` to trigger real alerts
 
+📖 **[Full Guide: REAL_MQTT_SETUP.md](REAL_MQTT_SETUP.md)**
+
 **When:** After getting real MQTT credentials from FCE
 
 ### Phase 3: Bot Deployment (Server)
-### Phase 3: Bot Deployment (Server)
-- [ ] Choose deployment option:
-  - **Option A**: PM2 on VPS/Server (Recommended)
-  - **Option B**: Docker container
-  - **Option C**: Home server with PM2
-  - **⚠️ NOT Vercel** - Serverless can't run long-lived processes
-
+- [ ] Choose deployment: PM2 (⭐ Easy) / Docker / Task Scheduler
 - [ ] Setup bot to run 24/7 on server
-- [ ] Configure PM2:
-  ```bash
-  pm2 start services/robot-alert-bot/index.mjs --name robot-bot
-  pm2 save
-  pm2 startup
-  ```
+- [ ] Verify bot is running and auto-restarts on reboot
+
+📖 **[Full Guide: BOT_DEPLOYMENT.md](BOT_DEPLOYMENT.md)**
 
 **When:** When ready to go production
 
@@ -241,11 +234,14 @@ npm run bot:start
 
 ## 📚 Documentation Files
 
-| File | Purpose |
-|------|---------|
-| `MOCK_SETUP.md` | How to test with mock MQTT (NEW) |
-| `README.md` | Original bot documentation |
-| `ADMIN_INTEGRATION.md` | Dashboard integration guide |
+| File | Purpose | For Whom |
+|------|---------|----------|
+| **BOT_IMPLEMENTATION.md** | Overview & status | Everyone |
+| **MOCK_SETUP.md** | Test without real MQTT | Testers |
+| **REAL_MQTT_SETUP.md** | Real MQTT connection | Dev/DevOps |
+| **BOT_DEPLOYMENT.md** | Deploy bot 24/7 (PM2/Docker) | DevOps/Dev |
+| `README.md` | Original bot documentation | Reference |
+| `ADMIN_INTEGRATION.md` | Dashboard integration | Integration |
 
 ---
 
