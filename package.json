@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "bot:start": "node services/robot-alert-bot/index.mjs",
+    "bot:mock": "node services/robot-alert-bot/mock-bot.mjs",
+    "bot:test": "node --test services/robot-alert-bot/*.test.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
